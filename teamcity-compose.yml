@@ -6,6 +6,11 @@ networks:
   web:
     name: web
 
+volumes:
+  teamcity-data:
+  teamcity-logs:
+  teamcity-db:
+
 services:
   teamcity:
     container_name: teamcity
