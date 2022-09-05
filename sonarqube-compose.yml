@@ -1,0 +1,75 @@
+version: "3.8"
+
+networks:
+  web:
+    name: web
+  db:
+    name: db
+
+volumes:
+  sonarqube-data:
+  sonarqube-extensions:
+  sonarqube-logs:
+  sonarqube-db:
+
+services:
+  sonarqube:
+    container_name: sonarqube
+    depends_on:
+      - sonarqube-db
+    environment:
+      SONAR_JDBC_URL: ${SONAR_DB_URL}
+      SONAR_JDBC_USERNAME: ${SONAR_DB_USER}
+      SONAR_JDBC_PASSWORD: ${SONAR_DB_PASSWORD}
+      SONAR_WEB_HOST: 0.0.0.0
+      SONAR_WEB_PORT: 9000
+      SONAR_WEB_HTTP_MAXTHREADS: 50
+      SONAR_WEB_HTTP_MINTHREADS: 5
+      SONAR_WEB_HTTP_ACCEPTCOUNT: 25
+      SONAR_WEB_HTTP_KEEPALIVETIMEOUT: 60000
+      SONAR_AUTH_JWTBASE64HS256SECRET: ${SONAR_AUTH_JWTBASE64HS256SECRET}
+      SONAR_WEB_SESSIONTIMEOUTINMINUTES: 4320
+      SONAR_WEB_SSO_ENABLE: false
+      SONAR_WEB_SSO_LOGINHEADER: X-Forwarded-Login
+      SONAR_WEB_SSO_NAMEHEADER: X-Forwarded-Name
+      SONAR_WEB_SSO_EMAILHEADER: X-Forwarded-Email
+      SONAR_WEB_SSO_GROUPSHEADER: X-Forwarded-Groups
+      SONAR_WEB_SSO_REFRESHINTERVALINMINUTES: 5
+      SONAR_SEARCH_JAVAOPTS: "-Xms1g -Xmx1g"
+      SONAR_SEARCH_PORT: 9001
+      SONAR_TELEMETRY_ENABLE: false
+    hostname: sonarqube
+    image: sonarqube:9.2.4-community
+    restart: unless-stopped
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nproc:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65535
+        hard: 65535
+    networks:
+      - db
+      - web
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-extensions:/opt/sonarqube/extensions
+      - sonarqube-logs:/opt/sonarqube/logs
+
+  sonarqube-db:
+    container_name: sonarqube-db
+    environment:
+      POSTGRES_USER: ${SONAR_DB_USER}
+      POSTGRES_PASSWORD: ${SONAR_DB_PASSWORD}
+    hostname: sonarqube-db
+    image: postgres:12
+    restart: unless-stopped
+    networks:
+      - db
+      - web
+    volumes:
+      - sonarqube-db:/var/lib/postgresql
+
