@@ -1,0 +1,34 @@
+version: "3.8"
+
+networks:
+  wg-mullvad:
+    name: wg-mullvad
+    external: true
+
+services:
+  wg-mullvad:
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    container_name: wg-mullvad
+    environment:
+      PUID: 911
+      PGID: 911
+      TZ: TZ=America/New_York
+    healthcheck:
+      test: ping -c 1 www.google.com || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    image: linuxserver/wireguard:latest
+    restart: unless-stopped
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.default.disable_ipv6=1
+      - net.ipv6.conf.all.disable_ipv6=1
+      - net.ipv6.conf.lo.disable_ipv6=1
+    networks:
+      - wg-mullvad
+    volumes:
+      - /data/wg-mullvad:/config
+      - /lib/modules:/lib/modules
