@@ -1,0 +1,233 @@
+version: "3.8"
+
+networks:
+  web:
+    name: web
+    external: true
+  db:
+    name: db
+    external: true
+
+services:
+  bazarr:
+    container_name: bazarr
+    environment:
+      TZ: America/New_York
+    hostname: bazarr
+    image: linuxserver/bazarr:latest
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/bazarr:/config
+      - /mnt/movies:/movies
+      - /mnt/tv:/tv
+     
+#   hass:
+#     container_name: hass
+#     environment:
+#       TZ: America/New_York
+#     hostname: hass
+#     image: homeassistant/home-assistant:latest
+#     restart: unless-stopped
+#     networks:
+#       - web
+#     volumes:
+#       - /data/hass:/config
+      
+  heimdall:
+    container_name: heimdall
+    environment:
+      PUID: 911
+      PGID: 911
+      TZ: America/New_York
+    hostname: heimdall
+    image: linuxserver/heimdall:latest
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/heimdall:/config
+     
+  lidarr:
+    container_name: lidarr
+    environment:
+      PUID: 911
+      PGID: 911
+      TZ: America/New_York
+    hostname: lidarr
+    image: linuxserver/lidarr
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/lidarr:/config
+      - /mnt/quarantine:/downloads
+
+  nzbget:
+    container_name: nzbget
+    environment:
+      PUID: 911
+      PGID: 911
+      TZ: America/New_York
+    hostname: nzbget
+    image: linuxserver/nzbget
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/nzbget:/config
+      - /mnt/quarantine:/downloads
+
+  prowlarr:
+    container_name: prowlarr
+    environment:
+      PUID: 911
+      PGID: 911
+      TZ: America/New_York
+    hostname: prowlarr
+    image: linuxserver/prowlarr:develop
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/prowlarr:/config
+     
+  radarr:
+    container_name: radarr
+    environment:
+      PUID: 911
+      PGID: 911
+      TZ: America/New_York
+    hostname: radarr
+    image: linuxserver/radarr:nightly
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/radarr:/config
+      - /mnt/movies:/movies
+      - /mnt/quarantine:/downloads
+     
+#   resilio:
+#     container_name: resilio
+#     environment:
+#       PUID: 911
+#       PGID: 911
+#       TZ: America/New_York
+#     hostname: resilio
+#     image: resilio/sync
+#     restart: unless-stopped
+#     networks:
+#       - web
+#     ports:
+#       - 8888:8888
+#       - 55555
+#     volumes:
+#       - /mnt/quarantine/sync:/mnt/sync
+     
+  searcharr:
+    container_name: searcharr
+    environment:
+      PUID: 911
+      PGID: 911
+      TZ: America/New_York
+    hostname: searcharr
+    image: toddrob/searcharr:latest
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/searcharr/data:/app/data
+      - /data/searcharr/logs:/app/logs
+      - /data/searcharr/settings.py:/app/settings.py
+
+  sonarr:
+    container_name: sonarr
+    environment:
+      PUID: 911
+      PGID: 911
+      TZ: America/New_York
+    hostname: sonarr
+    image: linuxserver/sonarr:develop
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/sonarr:/config
+      - /mnt/quarantine:/downloads
+      - /mnt/tv:/tv
+     
+  tautulli:
+    container_name: tautulli
+    environment:
+      PUID: 911
+      PGID: 911
+      TZ: America/New_York
+    hostname: tautulli
+    image: tautulli/tautulli:latest
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /data/tautulli/config:/config
+      - /data/tautulli/logs:/logs:ro
+      - /mnt/tv/TV:/mnt/tv/TV
+      
+  transmission:
+    cap_add:
+      - NET_ADMIN
+    container_name: transmission
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+    environment:
+      CREATE_TUN_DEVICE: true
+      ENABLE_UFW: false
+      GLOBAL_APPLY_PERMISSIONS: false
+      HEALTH_CHECK_HOST: google.com
+      LOCAL_NETWORK: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+      OPENVPN_CONFIG: mullvad_us_nyc
+      OPENVPN_OPTS: --inactive 3600 --ping 10 --ping-exit 60 --mute-replay-warnings
+      OPENVPN_PASSWORD: ${TRANSMISSION_VPN_PASS}
+      OPENVPN_PROVIDER: custom
+      OPENVPN_USERNAME: ${TRANSMISSION_VPN_USER}
+      PGID: 911
+      PUID: 911
+      TRANSMISSION_DOWNLOAD_DIR: /downloads/completed/torrents
+      TRANSMISSION_DOWNLOAD_QUEUE_SIZE: 10
+      TRANSMISSION_INCOMPLETE_DIR: /downloads/intermediate
+      TRANSMISSION_INCOMPLETE_DIR_ENABLED: true
+      TRANSMISSION_WATCH_DIR: /downloads/watch
+      TRANSMISSION_WATCH_DIR_ENABLED: true
+      TRANSMISSION_WEB_UI: flood-for-transmission
+      TZ: America/New_York
+      WEBPROXY_ENABLED: false
+    hostname: transmission
+    image: haugene/transmission-openvpn
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+    restart: unless-stopped
+    sysctls:
+      - "net.ipv6.conf.all.disable_ipv6=0"
+    networks:
+      - web
+    volumes:
+      - /data/transmission/data:/data
+      - /data/transmission/mullvad:/etc/openvpn/custom
+      - /mnt/quarantine:/downloads
+      
+  youtube-dl:
+    container_name: youtube-dl
+    hostname: youtube-dl
+    image: nbr23/youtube-dl-server:yt-dlp
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/youtube-dl/data:/youtube-dl
+      - /data/youtube-dl/config.yml:/app_config/config.yml:ro
+
