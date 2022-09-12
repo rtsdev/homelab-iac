@@ -30,7 +30,7 @@ services:
       UID: 911
       GID: 911
     hostname: dashy
-    image: lissy93/dashy: latest
+    image: lissy93/dashy:latest
     restart: unless-stopped
     networks:
       - web
