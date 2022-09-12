@@ -3,6 +3,7 @@ version: "3.8"
 networks:
   web:
     name: web
+    external: true
 
 volumes:
   portainer_data:
@@ -15,6 +16,8 @@ services:
     hostname: portainer
     image: portainer/portainer-ee:latest
     restart: always
+    networks:
+      - web
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
