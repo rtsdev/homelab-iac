@@ -8,7 +8,6 @@ networks:
 volumes:
   portainer_data:
     external: true
-  portainer_data_new:
 
 services:
   portainer:
@@ -21,4 +20,3 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
-      - portainer_data_new:/tmpdest
