@@ -22,6 +22,27 @@ services:
       - /data/bazarr:/config
       - /mnt/movies:/movies
       - /mnt/tv:/tv
+
+  dashy:
+    container_name: dashy
+    environment:
+      NODE_ENV: production
+      UID: 911
+      GID: 911
+    hostname: dashy
+    image: lissy93/dashy: latest
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/dashy/conf.yml:/app/public/conf.yml
+      - /data/dashy/icons:/app/public/item-icons
+    healthcheck:
+      test: ['CMD', 'node', '/app/services/healthcheck']
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
      
 #   hass:
 #     container_name: hass
@@ -48,7 +69,7 @@ services:
       - web
     volumes:
       - /data/heimdall:/config
-     
+
   lidarr:
     container_name: lidarr
     environment:
