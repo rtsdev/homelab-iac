@@ -56,20 +56,6 @@ services:
 #     volumes:
 #       - /data/hass:/config
       
-  heimdall:
-    container_name: heimdall
-    environment:
-      PUID: 911
-      PGID: 911
-      TZ: America/New_York
-    hostname: heimdall
-    image: linuxserver/heimdall:latest
-    restart: unless-stopped
-    networks:
-      - web
-    volumes:
-      - /data/heimdall:/config
-
   lidarr:
     container_name: lidarr
     environment:
