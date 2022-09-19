@@ -121,7 +121,7 @@ services:
     environment:
       TZ: America/New_York
     hostname: recyclarr
-    image: ghcr.io/recyclarr/recyclarr
+    image: ghcr.io/recyclarr/recyclarr:edge
     init: true
     user: 911:911
     restart: unless-stopped
