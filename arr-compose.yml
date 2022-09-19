@@ -115,7 +115,21 @@ services:
       - /data/radarr:/config
       - /mnt/movies:/movies
       - /mnt/quarantine:/downloads
-     
+
+  recyclarr:
+    container_name: recyclarr
+    environment:
+      TZ: America/New_York
+    hostname: recyclarr
+    image: ghcr.io/recyclarr/recyclarr
+    init: true
+    user: 911:911
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/recyclarr:/config
+
 #   resilio:
 #     container_name: resilio
 #     environment:
