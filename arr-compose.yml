@@ -170,7 +170,7 @@ services:
       PGID: 911
       TZ: America/New_York
     hostname: sonarr
-    image: linuxserver/sonarr:develop
+    image: linuxserver/sonarr:v4
     restart: unless-stopped
     networks:
       - web
