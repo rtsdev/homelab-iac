@@ -1,0 +1,8 @@
+---
+collections:
+  Harrison's Favorites:
+    trakt_list: https://trakt.tv/users/dstidham617/lists/harrison
+    collection_level: episode
+    sort_title: +0_0Harrison's Favorites
+    sync_mode: sync
+    summary: A collection of Harrison's favorite TV show episodes.
