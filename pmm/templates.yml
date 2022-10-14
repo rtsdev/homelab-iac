@@ -34,6 +34,8 @@ templates:
       pre: "_"
       order_<<key>>: ""
       image: chart/<<collection_name_encoded>>
+      item_radarr_tag_<<key>>: <<item_radarr_tag>>
+      item_sonarr_tag_<<key>>: <<item_sonarr_tag>>
     optional:
       - use_<<key>>
       - allowed_libraries
@@ -41,6 +43,8 @@ templates:
       - visible_library_<<key>>
       - visible_home_<<key>>
       - visible_shared_<<key>>
+      - item_radarr_tag
+      - item_sonarr_tag
     allowed_library_types:
       - <<use_<<key>>>>
       - <<allowed_libraries>>
@@ -49,8 +53,33 @@ templates:
     visible_library: <<visible_library_<<key>>>>
     visible_home: <<visible_home_<<key>>>>
     visible_shared: <<visible_shared_<<key>>>>
+    item_radarr_tag: <<item_radarr_tag_<<key>>>>
+    item_sonarr_tag: <<item_sonarr_tag_<<key>>>>
     sort_title: "!<<collection_section>><<pre>><<order_<<key>>>><<sort>>"
     url_poster: https://raw.githubusercontent.com/meisnate12/Plex-Meta-Manager-Images/master/<<image>>.jpg
+
+  arr:
+    default:
+      key: <<collection_name>>
+      radarr_add_missing_<<key>>: <<radarr_add_missing>>
+      sonarr_add_missing_<<key>>: <<sonarr_add_missing>>
+      radarr_folder_<<key>>: <<radarr_folder>>
+      sonarr_folder_<<key>>: <<sonarr_folder>>
+      radarr_tag_<<key>>: <<radarr_tag>>
+      sonarr_tag_<<key>>: <<sonarr_tag>>
+    optional:
+      - radarr_add_missing
+      - sonarr_add_missing
+      - radarr_folder
+      - sonarr_folder
+      - radarr_tag
+      - sonarr_tag
+    radarr_add_missing: <<radarr_add_missing_<<key>>>>
+    sonarr_add_missing: <<sonarr_add_missing_<<key>>>>
+    radarr_folder: <<radarr_folder_<<key>>>>
+    sonarr_folder: <<sonarr_folder_<<key>>>>
+    radarr_tag: <<radarr_tag_<<key>>>>
+    sonarr_tag: <<sonarr_tag_<<key>>>>
 
   custom:
     default:
