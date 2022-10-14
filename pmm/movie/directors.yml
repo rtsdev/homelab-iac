@@ -1,0 +1,56 @@
+---
+templates:
+  Director:
+    default:
+      sort_by: release.desc
+      style: bw
+    smart_filter:
+      any:
+        director: tmdb
+      sort_by: title.asc
+      validate: false
+    tmdb_person: <<director_id>>
+    url_poster: https://raw.githubusercontent.com/meisnate12/Plex-Meta-Manager-Images/master/people/<<style>>/<<director_name_encoded>>.jpg
+    sort_title: +3_<<collection_name>>
+
+collections:
+  "Alfred Hitchcock: Directing":
+    template:
+      name: Director
+      director_id: 2636
+      director_name: Alfred Hitchcock
+  "Christopher Nolan: Directing":
+    template:
+      name: Director
+      director_id: 525
+      director_name: Christopher Nolan
+  "David Fincher: Directing":
+    template:
+      name: Director
+      director_id: 7467
+      director_name: David Fincher
+  "Martin Scorsese: Directing":
+    template:
+      name: Director
+      director_id: 1032
+      director_name: Martin Scorsese
+  "Paul Thomas Anderson: Directing":
+    template:
+      name: Director
+      director_id: 4762
+      director_name: Paul Thomas Anderson
+  "Quentin Tarantino: Directing":
+    template:
+      name: Director
+      director_id: 138
+      director_name: Quentin Tarantino
+  "Stanley Kubrick: Directing":
+    template:
+      name: Director
+      director_id: 240
+      director_name: Stanley Kubrick
+  "Wes Anderson: Directing":
+    template:
+      name: Director
+      director_id: 5655
+      director_name: Wes Anderson

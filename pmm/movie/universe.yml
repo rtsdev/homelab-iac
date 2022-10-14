@@ -1,0 +1,82 @@
+---
+external_templates:
+  file: config/templates.yml
+  template_variables:
+    collection_section: "02"
+
+templates:
+  multi-franchise:
+    optional:
+      - name_mapping
+    name_mapping: <<name_mapping>>
+    url_poster: https://raw.githubusercontent.com/meisnate12/Plex-Meta-Manager-Images/master/franchise/<<image_encoded>>.jpg
+
+collections:
+  Universe Collections:
+    template:
+      - name: separator
+        separator: universe
+  DC Extended Universe:
+    variables:
+      key: dcu
+    template:
+      - name: multi-franchise
+        image: DC Universe
+      - name: shared
+      - name: custom
+    trakt_list: https://trakt.tv/users/donxy/lists/dc-extended-universe
+    summary: The DC Extended Universe (DCEU) is the fictional shared universe where most stories in American comic book titles published by DC Comics take place. DC superheroes such as Superman, Batman, Wonder Woman, Martian Manhunter, The Flash, Green Lantern and Aquaman are from this universe, as well as teams such as the Justice League and the Teen Titans.
+  Marvel Cinematic Universe:
+    variables:
+      key: mcu
+    template:
+      - name: multi-franchise
+        image: Marvel Cinematic Universe
+      - name: shared
+      - name: custom
+    trakt_list: https://trakt.tv/users/donxy/lists/marvel-cinematic-universe
+  Wizarding World:
+    variables:
+      key: wizard
+    template:
+      - name: multi-franchise
+        image: Wizarding World
+      - name: shared
+      - name: custom
+    trakt_list: https://trakt.tv/users/strangerer/lists/harry-potter
+  X-Men Universe:
+    variables:
+      key: xmen
+    template:
+      - name: multi-franchise
+        image: X-Men
+      - name: shared
+      - name: custom
+    trakt_list: https://trakt.tv/users/donxy/lists/x-men-universe
+  Middle Earth:
+    variables:
+      key: middle
+    template:
+      - name: multi-franchise
+        image: Middle Earth
+      - name: shared
+      - name: custom
+    trakt_list: https://trakt.tv/users/dybro/lists/lord-of-the-rings
+  Fast & Furious:
+    variables:
+      key: fast
+    template:
+      - name: multi-franchise
+        image: Fast & Furious
+      - name: shared
+      - name: custom
+    trakt_list: https://trakt.tv/users/vargajoe/lists/fast-and-furious-chronology
+  Star Trek:
+    variables:
+      key: trek
+    template:
+      - name: multi-franchise
+        image: Star Trek
+      - name: shared
+      - name: custom
+    trakt_list: https://trakt.tv/users/arachn0id/lists/star-trek-movies

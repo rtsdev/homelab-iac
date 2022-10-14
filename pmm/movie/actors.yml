@@ -1,0 +1,31 @@
+---
+templates:
+  Actor:
+    default:
+      sort_by: release.desc
+      style: bw
+    smart_filter:
+      any:
+        actor: tmdb
+      sort_by: title.asc
+      validate: false
+    tmdb_person: <<actor_id>>
+    url_poster: https://raw.githubusercontent.com/meisnate12/Plex-Meta-Manager-Images/master/people/<<style>>/<<actor_name_encoded>>.jpg
+    sort_title: +3_<<collection_name>>
+
+collections:
+  "Harrison Ford: Starring":
+    template:
+      name: Actor
+      actor_id: 3
+      actor_name: Harrison Ford
+  "Humphrey Bogart: Starring":
+    template:
+      name: Actor
+      actor_id: 4110
+      actor_name: Humphrey Bogart
+  "John Wayne: Starring":
+    template:
+      name: Actor
+      actor_id: 4165
+      actor_name: John Wayne
