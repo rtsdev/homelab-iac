@@ -86,6 +86,21 @@ services:
       - /data/nzbget:/config
       - /mnt/quarantine:/downloads
 
+  plex-meta-manager:
+    container_name: plex-meta-manager
+    environment:
+      PUID: 911
+      PGID: 911
+      TZ: America/New_York
+      PMM_IGNORE_GHOST: true
+      PMM_NO_COUNTDOWN: true
+      PMM_NO_MISSING: true
+    hostname: plex-meta-manager
+    image: meisnate12/plex-meta-manager:nightly
+    restart: unless-stopped
+    volumes:
+      - /data/plex-meta-manager:/config:rw
+
   prowlarr:
     container_name: prowlarr
     environment:

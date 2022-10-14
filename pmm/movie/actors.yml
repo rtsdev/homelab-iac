@@ -1,0 +1,37 @@
+---
+external_templates:
+  file: config/templates.yml
+  template_variables:
+    collection_section: 17
+
+templates:
+  Actor:
+    default:
+      sort_by: title.asc
+      style: bw
+    smart_filter:
+      sort_by: <<sort_by>>
+      any:
+        actor: tmdb
+    tmdb_person: <<actor_id>>
+    url_poster: https://raw.githubusercontent.com/meisnate12/Plex-Meta-Manager-Images/master/people/<<style>>/<<actor_name_encoded>>.jpg
+
+collections:
+  "Harrison Ford: Starring":
+    template:
+      - name: shared
+      - name: Actor
+        actor_id: 3
+        actor_name: Harrison Ford
+  "Humphrey Bogart: Starring":
+    template:
+      - name: shared
+      - name: Actor
+        actor_id: 4110
+        actor_name: Humphrey Bogart
+  "John Wayne: Starring":
+    template:
+      - name: shared
+      - name: Actor
+        actor_id: 4165
+        actor_name: John Wayne

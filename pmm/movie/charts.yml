@@ -1,0 +1,31 @@
+---
+external_templates:
+  file: config/templates.yml
+  template_variables:
+    collection_section: "01"
+
+templates:
+  imdb:
+    default:
+      summary_<<key>>: "List of <<collection_name>> <<library_type>>s"
+    imdb_chart: <<chart>>_<<library_type>>s
+    summary: <<summary_<<key>>>>
+
+collections:
+  IMDb Popular:
+    variables:
+      key: popular
+    template:
+      - name: imdb
+        chart: popular
+      - name: shared
+      - name: custom
+
+  IMDb Top 250:
+    variables:
+      key: top
+    template:
+      - name: imdb
+        chart: top
+      - name: shared
+      - name: custom

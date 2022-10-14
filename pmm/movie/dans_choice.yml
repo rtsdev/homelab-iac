@@ -1,0 +1,14 @@
+---
+templates:
+  dans_choice:
+    sort_title: +0_<<num>><<collection_name>>
+    smart_label: random
+    trakt_list_details: https://trakt.tv/users/dstidham617/lists/<<trakt_list_name>>?sort=random,asc
+    visible_home: false
+    visible_shared: true
+collections:
+  "Dan's Choice: Science Fiction":
+    template:
+      name: dans_choice
+      num: 2
+      trakt_list_name: dan-s-choice-sci-fi

@@ -1,0 +1,67 @@
+---
+templates:
+  collection:
+    optional:
+      - collection
+      - movie
+      - name_mapping
+    cache_builders: 1
+    minimum_items: 2
+    tmdb_collection_details: <<value>>
+    tmdb_movie: <<movie>>
+    name_mapping: <<name_mapping>>
+    sort_title: "!02_<<collection_name>>"
+    build_collection: true
+    sync_mode: sync
+    collection_order: release
+
+dynamic_collections:
+  TMDb Collections:
+    type: tmdb_collection
+    remove_prefix: The
+    remove_suffix: Collection
+    template: collection
+    addons:
+      8091:       # Alien
+        - 135416    # Prometheus
+      2806:       # American Pie
+        - 298820    # American Pie (Spin-off)
+      86066:      # Despicable Me
+        - 544669    # Minions
+      9485:       # The Fast and the Furious
+        - 688042    # Hobbs & Shaw
+      1582:       # Teenage Mutant Ninja Turtles
+        - 401562    # Teenage Mutant Ninja Turtles (Remake)
+      748:        # X-Men
+        - 453993    # The Wolverine
+    title_override:
+      10: "Star Wars: Skywalker Saga"
+      535313: Godzilla (MonsterVerse)
+      535790: Godzilla (Anime)
+    template_variables:
+      movie:
+        448150: 567604    # Deadpool: Once Upon a Deadpool
+        386382: 326359, 460793  # Frozen: Frozen Fever, Olaf's Frozen Adventure
+        2980: 43074 # Ghostbusters: Ghostbusters
+        374509: 18983 # Godzilla (Showa): Godzilla, King of the Monsters!
+        374511: 39256 # Godzilla (Heisei): Godzilla 1985
+        535313: 293167  # Godzilla: Kong: Skull Island
+        9743: 11454 # The Hannibal Lecter: Manhunter
+        8354: 79218, 717095, 387893 # Ice Age: Ice Age: A Mammoth Christmas, Ice Age Continental Drift: Scrat Got Your Tongue, Ice Age: The Great Egg-Scapade
+        328: 630322 # Jurassic Park: Battle at Big Rock
+        14740: 161143, 25472, 270946  # Madagascar: Madly Madagascar, Merry Madagascar, Penguins of Madagascar
+        1582: 1273  # Teenage Mutant Ninja Turtles: TMNT
+        10194: 130925 # Toy Story: Partysaurus Rex
+        63043: 73362  # TRON: TRON: The Next Day
+        748: 567604 # X-Men: Once Upon a Deadpool
+      name_mapping:
+        1565: 28 Days-Weeks Later
+        508334: Angels in the
+        115838: Escape From
+        386534: Has Fallen
+        87359: Mission Impossible
+        133352: Resident Evil Biohazard
+        115575: Star Trek Alternate Reality
+        115570: Star Trek The Next Generation
+        151: Star Trek The Original Series
+        10: Star Wars Skywalker Saga

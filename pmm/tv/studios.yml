@@ -1,0 +1,37 @@
+---
+templates:
+  Studio:
+    item_assets: true
+    optional:
+      - company
+    tmdb_company: <<company>> 
+    sort_title: +2_<<num>><<collection_name>>
+    sync_mode: sync
+    smart_label: release.desc
+collections:
+  Marvel Cinematic Universe:
+    item_assets: true
+    sort_title: +2_1Marvel Cinematic Universe
+    sync_mode: sync
+    smart_filter:
+      all:
+        studio: Marvel Studios
+      sort_by: release.asc
+    summary: MCU
+  Pixar:
+    sort_title: +2_1Pixar
+    sync_mode: sync
+    smart_filter:
+      all:
+        studio: Pixar
+      sort_by: title.asc
+    summary: Pixar Animation Studios, commonly known as Pixar, is an American computer animation studio based in Emeryville, California, a subsidiary of Disney Studios Content owned by The Walt Disney Company. Pixar began in 1979 as part of the Lucasfilm computer division, known as the Graphics Group, before its spin-off as a corporation on February 3, 1986, with funding from Apple co-founder Steve Jobs, who became its majority shareholder. Disney purchased Pixar in 2006 at a valuation of $7.4 billion by converting each share of Pixar stock to 2.3 shares of Disney stock, a transaction that resulted in Jobs becoming Disney's largest single shareholder at the time. Pixar is best known for its feature films technologically powered by RenderMan, the company's own implementation of the industry-standard RenderMan Interface Specification image-rendering application programming interface. Luxo Jr., a desk lamp from the studio's 1986 short film of the same name, is the studio's mascot.
+  Star Wars:
+    sort_title: +2_1Star Wars
+    sync_mode: sync
+    smart_filter:
+      all:
+        studio: LucasFilm
+      sort_by: title.asc
+    summary: Star Wars
+
