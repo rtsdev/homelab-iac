@@ -6,7 +6,6 @@ external_templates:
 
 templates:
   studio:
-    item_assets: true
     optional:
       - company
     tmdb_company: <<company>>
