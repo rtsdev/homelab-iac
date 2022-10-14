@@ -93,7 +93,6 @@ services:
       PGID: 911
       TZ: America/New_York
       PMM_IGNORE_GHOST: true
-      PMM_NO_COUNTDOWN: true
       PMM_NO_MISSING: true
     hostname: plex-meta-manager
     image: meisnate12/plex-meta-manager:nightly
