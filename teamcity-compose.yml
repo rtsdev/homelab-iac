@@ -33,7 +33,7 @@ services:
       POSTGRES_PASSWORD: ${TEAMCITY_DB_PASSWORD}
       POSTGRES_DB: ${TEAMCITY_DB}
     hostname: teamcity-db
-    image: postgres
+    image: postgres:14
     restart: unless-stopped
     networks:
       - db
