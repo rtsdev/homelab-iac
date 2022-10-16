@@ -19,6 +19,13 @@ templates:
     url_poster: https://raw.githubusercontent.com/meisnate12/Plex-Meta-Manager-Images/master/playlist/<<playlist_name_encoded>>.jpg
 
 playlists:
+  Marvel Cinematic Universe Chronological Order:
+    delete_playlist: true
+    variables:
+      key: mcu
+    template:
+      - name: playlist
+        trakt_url: https://trakt.tv/users/donxy/lists/marvel-cinematic-universe
   Marvel Cinematic Universe (Timeline Order):
     variables:
       key: mcu
