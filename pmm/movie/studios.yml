@@ -16,19 +16,19 @@ collections:
     template:
       - name: studio
         company: 41077
-      - name: shared
+      - name: custom
     trakt_list: https://trakt.tv/users/fidel-cb/lists/a24-movies-and-tv-shows?sort=released,desc
 
   Pixar:
     template:
       - name: studio
-      - name: shared
+      - name: custom
     trakt_list: https://trakt.tv/users/chloe131997/lists/pixar?sort=released,desc
 
   Pixar Shorts:
     template:
       - name: studio
-      - name: shared
+      - name: custom
     collection_mode: hide_items
     item_assets: true
     trakt_list: https://trakt.tv/users/tbotcotw/lists/pixar-shorts?sort=released,desc

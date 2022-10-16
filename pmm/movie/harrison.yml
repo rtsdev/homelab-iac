@@ -2,6 +2,6 @@
 collections:
   Harrison's Favorites:
     trakt_list_details: https://trakt.tv/users/dstidham617/lists/harrison
-    sort_title: +0_1Harrison's Favorites
+    sort_title: "!01_<<collection_name>>"
     smart_label: title.asc
     summary: A collection of Harrison's favorite movies.

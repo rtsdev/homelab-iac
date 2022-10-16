@@ -11,7 +11,7 @@ templates:
       validate: false
     tmdb_person: <<director_id>>
     url_poster: https://raw.githubusercontent.com/meisnate12/Plex-Meta-Manager-Images/master/people/<<style>>/<<director_name_encoded>>.jpg
-    sort_title: !04_<<collection_name>>
+    sort_title: "!04_<<collection_name>>"
 
 collections:
   "Alfred Hitchcock: Directing":
