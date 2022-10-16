@@ -6,7 +6,7 @@ templates:
   Holiday:
     default:
       key: <<collection_name>>
-      sort_by: title.asc
+      sort_by: random
       sort_by_<<key>>: <<sort_by>>
     optional:
       - schedule_<<key>>
@@ -114,13 +114,6 @@ collections:
       - https://trakt.tv/users/mybicycle/lists/halloween
       - https://trakt.tv/users/jayinftl/lists/halloween
       - https://trakt.tv/users/roswellgeek/lists/halloween
-    tmdb_collection:
-      - 91361    # Halloween Collection
-      - 8581     # A Nightmare on Elm Street Collection
-      - 1733     # The Mummy Collection
-      - 8091     # Alien Collection
-    tmdb_movie:
-      - 23437    # A Nightmare on Elm Street (2010)
 
   Christmas:
     variables:

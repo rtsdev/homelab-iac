@@ -10,7 +10,7 @@ templates:
     tmdb_collection_details: <<value>>
     tmdb_movie: <<movie>>
     name_mapping: <<name_mapping>>
-    sort_title: "!02_<<collection_name>>"
+    sort_title: "!05_<<collection_name>>"
     build_collection: true
     sync_mode: sync
     collection_order: release
@@ -18,8 +18,8 @@ templates:
 dynamic_collections:
   TMDb Collections:
     type: tmdb_collection
-    remove_prefix: The
-    remove_suffix: Collection
+    remove_prefix: "The"
+    remove_suffix: "Collection"
     template: collection
     addons:
       8091:       # Alien

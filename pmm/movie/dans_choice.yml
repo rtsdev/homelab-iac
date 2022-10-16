@@ -5,7 +5,7 @@ templates:
     smart_label: random
     trakt_list_details: https://trakt.tv/users/dstidham617/lists/<<trakt_list_name>>?sort=random,asc
     visible_home: false
-    visible_shared: true
+    visible_shared: false
 collections:
   "Dan's Choice: Science Fiction":
     template:
