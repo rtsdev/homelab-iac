@@ -9,15 +9,6 @@ templates:
     sync_mode: sync
     smart_label: release.desc
 collections:
-  Marvel Cinematic Universe:
-    item_assets: true
-    sort_title: +2_1Marvel Cinematic Universe
-    sync_mode: sync
-    smart_filter:
-      all:
-        studio: Marvel Studios
-      sort_by: release.asc
-    summary: MCU
   Pixar:
     sort_title: +2_1Pixar
     sync_mode: sync

@@ -13,7 +13,7 @@ dynamic_collections:
     data:
       "85536": Star Wars
       "1431": CSI
-      "85271": WandaVision
+      "85271": Marvel Cinematic Universe
     template:
       - tmdbshow
     addons:
