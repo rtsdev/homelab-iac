@@ -1,7 +1,7 @@
 ---
 collections:
   "Dan's Choice: Science Fiction":
-    sort_title: "!02_<<collection_name>>"
+    sort_title: "!01_<<collection_name>>"
     smart_label: random
     trakt_list_details: https://trakt.tv/users/dstidham617/lists/dan-s-choice-sci-fi?sort=random,asc
     visible_home: false
