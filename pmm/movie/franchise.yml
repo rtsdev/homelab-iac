@@ -15,7 +15,6 @@ templates:
     sync_mode: sync
     collection_order: release
     move_prefix: "The, A, An"
-    remove_prefix: <<remove_prefix>>
 
 dynamic_collections:
   TMDb Collections:
@@ -37,6 +36,9 @@ dynamic_collections:
         - 453993    # The Wolverine
     title_override:
       10: "Star Wars: Skywalker Saga"
+      9743: Hannibal Lecter
+      31562: Bourne
+      192492: Jack Ryan
       535313: Godzilla (MonsterVerse)
       535790: Godzilla (Anime)
       302331: LEGO Star Wars
@@ -67,5 +69,3 @@ dynamic_collections:
         115570: Star Trek The Next Generation
         151: Star Trek The Original Series
         10: Star Wars Skywalker Saga
-      remove_prefix:
-        31562: "The"
