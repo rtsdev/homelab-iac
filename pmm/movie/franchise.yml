@@ -15,6 +15,7 @@ templates:
     sync_mode: sync
     collection_order: release
     move_prefix: "The, A, An"
+    remove_prefix: <<remove_prefix>>
 
 dynamic_collections:
   TMDb Collections:
@@ -66,3 +67,5 @@ dynamic_collections:
         115570: Star Trek The Next Generation
         151: Star Trek The Original Series
         10: Star Wars Skywalker Saga
+      remove_prefix:
+        31562: "The"
