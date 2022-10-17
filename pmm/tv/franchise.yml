@@ -14,6 +14,7 @@ dynamic_collections:
       "85536": Star Wars
       "1431": CSI
       "85271": Marvel Cinematic Universe
+      "114505": Pixar
     template:
       - tmdbshow
     addons:
@@ -47,4 +48,9 @@ dynamic_collections:
         92749, # Moon Knight
         92782, # Ms. Marvel
         92783, # She-Hulk
+      ]
+      114505: [
+        114501, # Dug Days
+        114502, # Cars on the Road
+        90461, # Monsters at Work
       ]
