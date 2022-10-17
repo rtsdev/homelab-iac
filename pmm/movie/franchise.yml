@@ -38,6 +38,7 @@ dynamic_collections:
       10: "Star Wars: Skywalker Saga"
       535313: Godzilla (MonsterVerse)
       535790: Godzilla (Anime)
+      302331: LEGO Star Wars
     template_variables:
       movie:
         448150: 567604    # Deadpool: Once Upon a Deadpool
