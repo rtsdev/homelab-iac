@@ -4,12 +4,10 @@ templates:
     optional:
       - collection
       - movie
-      - name_mapping
     cache_builders: 1
     minimum_items: 2
     tmdb_collection_details: <<value>>
     tmdb_movie: <<movie>>
-    name_mapping: <<name_mapping>>
     sort_title: "!05_<<collection_sort>>"
     build_collection: true
     sync_mode: sync
