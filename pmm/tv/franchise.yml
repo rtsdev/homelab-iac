@@ -1,0 +1,50 @@
+templates:
+  tmdbshow:
+    minimum_items: 2
+    tmdb_show: <<value>>
+    sort_title: "!05_<<collection_name>>"
+    build_collection: true
+    sync_mode: sync
+    collection_order: release
+
+dynamic_collections:
+  Show Franchise Collections:
+    type: custom
+    data:
+      "85536": Star Wars
+      "1431": CSI
+      "85271": WandaVision
+    template:
+      - tmdbshow
+    addons:
+      85536: [
+        71412, # Forces of Destiny
+        3478, # The Clone Wars
+        105971, # The Bad Batch
+        92830, # Obi-Wan Kenobi
+        83867, # Andor
+        60554, # Rebels
+        82856, # The Mandalorian
+        115036, # The Book of Boba Fett
+        114461, # Ahsoka
+        202879, # Skeleton Crew
+        114462, # Rangers of the New Republic
+        114476, # Lando
+        114478, # Visions
+        79093, # Resistance
+      ]
+      1431: [
+        1620, # Miami
+        2458, # New York
+        122194, # Vegas
+        61811, # Cyber
+      ] # CSI: Miami, NY, Cyber, Vegas
+      85271: [
+        88396, # Falcon and the Winter Soldier
+        84958, # Loki
+        91363, # What If...
+        88329, # Hawkeye
+        92749, # Moon Knight
+        92782, # Ms. Marvel
+        92783, # She-Hulk
+      ]
