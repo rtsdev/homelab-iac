@@ -1,34 +1,27 @@
 ---
-external_templates:
-  file: config/templates.yml
-  template_variables:
-    collection_section: "03"
-
 templates:
   studio:
     optional:
       - company
     tmdb_company: <<company>>
     smart_label: release.desc
+    sort_title: "!03_<<collection_name>>"
 
 collections:
   A24:
     template:
       - name: studio
         company: 41077
-      - name: custom
     trakt_list: https://trakt.tv/users/fidel-cb/lists/a24-movies-and-tv-shows?sort=released,desc
 
   Pixar:
     template:
       - name: studio
-      - name: custom
     trakt_list: https://trakt.tv/users/chloe131997/lists/pixar?sort=released,desc
 
   Pixar Shorts:
     template:
       - name: studio
-      - name: custom
     collection_mode: hide_items
     item_assets: true
     trakt_list: https://trakt.tv/users/tbotcotw/lists/pixar-shorts?sort=released,desc

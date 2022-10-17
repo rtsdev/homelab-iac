@@ -14,11 +14,11 @@ templates:
     build_collection: true
     sync_mode: sync
     collection_order: release
+    move_prefix: "The, A, An"
 
 dynamic_collections:
   TMDb Collections:
     type: tmdb_collection
-    remove_prefix: "The"
     remove_suffix: "Collection"
     template: collection
     addons:
