@@ -38,10 +38,11 @@ dynamic_collections:
       10: "Star Wars: Skywalker Saga"
       9743: Hannibal Lecter
       31562: Bourne
+      115776: Robert Langdon
       192492: Jack Ryan
+      302331: LEGO Star Wars
       535313: Godzilla (MonsterVerse)
       535790: Godzilla (Anime)
-      302331: LEGO Star Wars
     template_variables:
       movie:
         448150: 567604    # Deadpool: Once Upon a Deadpool
@@ -58,14 +59,3 @@ dynamic_collections:
         10194: 130925 # Toy Story: Partysaurus Rex
         63043: 73362  # TRON: TRON: The Next Day
         748: 567604 # X-Men: Once Upon a Deadpool
-      name_mapping:
-        1565: 28 Days-Weeks Later
-        508334: Angels in the
-        115838: Escape From
-        386534: Has Fallen
-        87359: Mission Impossible
-        133352: Resident Evil Biohazard
-        115575: Star Trek Alternate Reality
-        115570: Star Trek The Next Generation
-        151: Star Trek The Original Series
-        10: Star Wars Skywalker Saga
