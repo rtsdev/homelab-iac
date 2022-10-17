@@ -17,11 +17,6 @@ templates:
     delete_not_scheduled: true
 
 collections:
-  Seasonal Collections:
-    template:
-      - name: separator off
-        separator: seasonal
-
 
   Independence Day:
     variables:

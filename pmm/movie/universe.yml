@@ -12,10 +12,6 @@ templates:
     url_poster: https://raw.githubusercontent.com/meisnate12/Plex-Meta-Manager-Images/master/franchise/<<image_encoded>>.jpg
 
 collections:
-  Universe Collections:
-    template:
-      - name: separator
-        separator: universe
   DC Extended Universe:
     variables:
       key: dcu
