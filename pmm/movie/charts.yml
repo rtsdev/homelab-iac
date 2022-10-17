@@ -29,3 +29,15 @@ collections:
         chart: top
       - name: shared
       - name: custom
+
+  Quick Flicks:
+    smart_filter:
+      all:
+        duration.gte: 20
+        duration.lte: 99
+        audience_rating.gte: 7.0
+        genre.not: Animation
+      sort_by: release.desc
+    sort_title: "!01_<<collection_name>>"
+    summary: If you're feeling overwhelmed, but still want to squeeze a film into your daily routine, this list is made for you. Movies that are 99 minutes or less with an IMDb rating of at least 7.
+
