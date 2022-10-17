@@ -10,7 +10,7 @@ templates:
     tmdb_collection_details: <<value>>
     tmdb_movie: <<movie>>
     name_mapping: <<name_mapping>>
-    sort_title: "!05_<<collection_name>>"
+    sort_title: "!05_<<collection_sort>>"
     build_collection: true
     sync_mode: sync
     collection_order: release
