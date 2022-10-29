@@ -86,6 +86,30 @@ services:
       - /data/nzbget:/config
       - /mnt/quarantine:/downloads
 
+  plex:
+    container_name: plex
+    environment:
+      PUID: 911
+      PGID: 911
+      TZ: America/New_York
+      UMASK: 002
+      PLEX_CLAIM: ${PLEX_CLAIM}
+      ADVERTISE_IP: https://192.168.90.32:32400
+      ALLOWED_NETWORKS: ""
+      PLEX_PASS: yes
+    hostname: plex
+    image: cr.hotio.dev/hotio/plex:latest
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/plex:/config
+      - /dev/shm:/transcode
+      - /mnt/tv:/tv
+      - /mnt/movies:/movies
+    ports:
+      - "32400:32400"
+
   plex-meta-manager:
     container_name: plex-meta-manager
     environment:
