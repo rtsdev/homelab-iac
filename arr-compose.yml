@@ -94,7 +94,7 @@ services:
       TZ: America/New_York
       UMASK: 002
       PLEX_CLAIM: ${PLEX_CLAIM}
-      ADVERTISE_IP: https://192.168.90.32:32400
+      ADVERTISE_IP: ${PLEX_ADVERTISE_IPS}
       ALLOWED_NETWORKS: ""
       PLEX_PASS: yes
     hostname: plex
