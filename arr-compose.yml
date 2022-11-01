@@ -109,6 +109,12 @@ services:
       - /mnt/movies:/movies
     ports:
       - "32400:32400"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: ["gpu"]
 
   plex-meta-manager:
     container_name: plex-meta-manager
