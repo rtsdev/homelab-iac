@@ -22,6 +22,8 @@ services:
       - /data/bazarr:/config
       - /mnt/movies:/movies
       - /mnt/tv:/tv
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
 
   dashy:
     container_name: dashy
@@ -38,24 +40,26 @@ services:
       - /data/dashy/conf.yml:/app/public/conf.yml
       - /data/dashy/icons:/app/public/item-icons
     healthcheck:
-      test: ['CMD', 'node', '/app/services/healthcheck']
+      test: [ 'CMD', 'node', '/app/services/healthcheck' ]
       interval: 1m30s
       timeout: 10s
       retries: 3
       start_period: 40s
-     
-#   hass:
-#     container_name: hass
-#     environment:
-#       TZ: America/New_York
-#     hostname: hass
-#     image: homeassistant/home-assistant:latest
-#     restart: unless-stopped
-#     networks:
-#       - web
-#     volumes:
-#       - /data/hass:/config
-      
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+
+      #   hass:
+      #     container_name: hass
+      #     environment:
+      #       TZ: America/New_York
+      #     hostname: hass
+      #     image: homeassistant/home-assistant:latest
+      #     restart: unless-stopped
+      #     networks:
+      #       - web
+      #     volumes:
+      #       - /data/hass:/config
+
   lidarr:
     container_name: lidarr
     environment:
@@ -70,6 +74,8 @@ services:
     volumes:
       - /data/lidarr:/config
       - /mnt/quarantine:/downloads
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
 
   nzbget:
     container_name: nzbget
@@ -85,6 +91,8 @@ services:
     volumes:
       - /data/nzbget:/config
       - /mnt/quarantine:/downloads
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
 
   plex:
     container_name: plex
@@ -116,7 +124,7 @@ services:
             - capabilities:
                 - gpu
     labels:
-        com.centurylinklabs.watchtower.enable: "true"
+      com.centurylinklabs.watchtower.enable: "true"
 
   plex-meta-manager:
     container_name: plex-meta-manager
@@ -133,6 +141,8 @@ services:
       - web
     volumes:
       - /data/plex-meta-manager:/config:rw
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
 
   prowlarr:
     container_name: prowlarr
@@ -147,7 +157,9 @@ services:
       - web
     volumes:
       - /data/prowlarr:/config
-     
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+
   radarr:
     container_name: radarr
     environment:
@@ -163,6 +175,8 @@ services:
       - /data/radarr:/config
       - /mnt/movies:/movies
       - /mnt/quarantine:/downloads
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
 
   recyclarr:
     container_name: recyclarr
@@ -177,6 +191,8 @@ services:
       - web
     volumes:
       - /data/recyclarr:/config
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
 
 #   resilio:
 #     container_name: resilio
@@ -210,6 +226,8 @@ services:
       - /data/searcharr/data:/app/data
       - /data/searcharr/logs:/app/logs
       - /data/searcharr/settings.py:/app/settings.py
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
 
   sonarr:
     container_name: sonarr
@@ -226,7 +244,9 @@ services:
       - /data/sonarr:/config
       - /mnt/quarantine:/downloads
       - /mnt/tv:/tv
-     
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+
   tautulli:
     container_name: tautulli
     environment:
@@ -243,7 +263,9 @@ services:
       - /data/tautulli/config:/config
       - /data/tautulli/logs:/logs:ro
       - /mnt/tv/TV:/mnt/tv/TV
-      
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+
   transmission:
     cap_add:
       - NET_ADMIN
@@ -288,7 +310,9 @@ services:
       - /data/transmission/data:/data
       - /data/transmission/mullvad:/etc/openvpn/custom
       - /mnt/quarantine:/downloads
-      
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+
   youtube-dl:
     container_name: youtube-dl
     hostname: youtube-dl
@@ -299,4 +323,5 @@ services:
     volumes:
       - /data/youtube-dl/data:/youtube-dl
       - /data/youtube-dl/config.yml:/app_config/config.yml:ro
-
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
