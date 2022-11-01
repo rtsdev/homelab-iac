@@ -232,7 +232,7 @@ services:
       PGID: 911
       TZ: America/New_York
     hostname: tautulli
-    image: tautulli/tautulli:latest
+    image: ghcr.io/tautulli/tautulli:latest
     restart: unless-stopped
     networks:
       - web
