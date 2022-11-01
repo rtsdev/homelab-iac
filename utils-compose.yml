@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  watchtower:
+    container_name: watchtower
+    environment:
+      TZ: America/New_York
+      WATCHTOWER_CLEANUP: true
+      WATCHTOWER_INCLUDE_RESTARTING: true
+      WATCHTOWER_LABEL_ENABLE: true
+      WATCHTOWER_SCHEDULE: 0 0 5 * * *
+      WATCHTOWER_ROLLING_RESTART: true
+    hostname: watchtower
+    image: containrrr/watchtower
+    network_mode: none
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

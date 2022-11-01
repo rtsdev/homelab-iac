@@ -34,4 +34,5 @@ services:
       - web
     volumes:
       - /data/swag:/config
-
+    labels:
+      com.centurylinklabs.watchtower.monitor-only: "true"

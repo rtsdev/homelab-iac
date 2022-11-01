@@ -109,14 +109,14 @@ services:
       - /dev/shm:/transcode
       - /mnt/tv:/tv
       - /mnt/movies:/movies
-    ports:
-      - "32400:32400"
     deploy:
       resources:
         reservations:
           devices:
             - capabilities:
                 - gpu
+    labels:
+        com.centurylinklabs.watchtower.enable: "true"
 
   plex-meta-manager:
     container_name: plex-meta-manager
