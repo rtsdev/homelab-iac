@@ -127,6 +127,8 @@ services:
     hostname: plex-meta-manager
     image: meisnate12/plex-meta-manager:nightly
     restart: unless-stopped
+    networks:
+      - web
     volumes:
       - /data/plex-meta-manager:/config:rw
 
