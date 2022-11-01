@@ -12,7 +12,7 @@ services:
       WATCHTOWER_ROLLING_RESTART: true
     hostname: watchtower
     image: containrrr/watchtower
-    network_mode: none
+    network_mode: bridge
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
