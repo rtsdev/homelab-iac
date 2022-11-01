@@ -97,6 +97,8 @@ services:
       ADVERTISE_IP: ${PLEX_ADVERTISE_IPS}
       ALLOWED_NETWORKS: ${PLEX_ALLOWED_NETWORKS}
       PLEX_PASS: yes
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: all
     hostname: plex
     image: cr.hotio.dev/hotio/plex:latest
     restart: unless-stopped
@@ -113,8 +115,8 @@ services:
       resources:
         reservations:
           devices:
-            - driver: nvidia
-              capabilities: ["gpu"]
+            - capabilities:
+                - gpu
 
   plex-meta-manager:
     container_name: plex-meta-manager
