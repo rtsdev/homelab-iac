@@ -95,7 +95,7 @@ services:
       UMASK: 002
       PLEX_CLAIM: ${PLEX_CLAIM}
       ADVERTISE_IP: ${PLEX_ADVERTISE_IPS}
-      ALLOWED_NETWORKS: ""
+      ALLOWED_NETWORKS: ${PLEX_ALLOWED_NETWORKS}
       PLEX_PASS: yes
     hostname: plex
     image: cr.hotio.dev/hotio/plex:latest
