@@ -74,7 +74,7 @@ services:
       - web
     volumes:
       - /data/lidarr:/config
-      - /mnt/quarantine:/downloads
+      - /mnt/media:/media
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
@@ -84,14 +84,16 @@ services:
       PUID: 911
       PGID: 911
       TZ: America/New_York
+      UMASK: 002
     hostname: nzbget
-    image: linuxserver/nzbget
+    image: cr.hotio.dev/hotio/nzbget:latest
     restart: unless-stopped
     networks:
       - web
     volumes:
       - /data/nzbget:/config
       - /mnt/quarantine:/downloads
+      - /mnt/media/usenet:/usenet
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
