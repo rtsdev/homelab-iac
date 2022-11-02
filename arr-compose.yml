@@ -12,9 +12,12 @@ services:
   bazarr:
     container_name: bazarr
     environment:
+      PUID: 911
+      PGID: 911
       TZ: America/New_York
+      UMASK: 002
     hostname: bazarr
-    image: linuxserver/bazarr:latest
+    image: cr.hotio.dev/hotio/bazarr:latest
     restart: unless-stopped
     networks:
       - web
@@ -93,7 +96,6 @@ services:
       - web
     volumes:
       - /data/nzbget:/config
-      - /mnt/quarantine:/downloads
       - /mnt/media/usenet:/mnt/media/usenet
     labels:
       com.centurylinklabs.watchtower.enable: "true"
@@ -155,8 +157,9 @@ services:
       PUID: 911
       PGID: 911
       TZ: America/New_York
+      UMASK: 002
     hostname: prowlarr
-    image: linuxserver/prowlarr:develop
+    image: cr.hotio.dev/hotio/prowlarr:testing
     restart: unless-stopped
     networks:
       - web
@@ -242,8 +245,9 @@ services:
       PUID: 911
       PGID: 911
       TZ: America/New_York
+      UMASK: 002
     hostname: sonarr
-    image: linuxserver/sonarr:v4
+    image: cr.hotio.dev/hotio/sonarr:v4
     restart: unless-stopped
     networks:
       - web
