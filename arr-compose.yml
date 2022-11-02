@@ -169,13 +169,15 @@ services:
       PUID: 911
       PGID: 911
       TZ: America/New_York
+      UMASK: 002
     hostname: radarr
-    image: linuxserver/radarr:nightly
+    image: cr.hotio.dev/hotio/radarr:nightly
     restart: unless-stopped
     networks:
       - web
     volumes:
       - /data/radarr:/config
+      - /mnt/media:/media
       - /mnt/movies:/movies
       - /mnt/quarantine:/downloads
     labels:
