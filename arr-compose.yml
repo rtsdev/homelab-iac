@@ -248,6 +248,7 @@ services:
       - web
     volumes:
       - /data/sonarr:/config
+      - /mnt/media:/media
       - /mnt/quarantine:/downloads
       - /mnt/tv:/tv
     labels:
