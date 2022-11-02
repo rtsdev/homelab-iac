@@ -66,8 +66,9 @@ services:
       PUID: 911
       PGID: 911
       TZ: America/New_York
+      UMASK: 002
     hostname: lidarr
-    image: linuxserver/lidarr
+    image: cr.hotio.dev/hotio/lidarr:latest
     restart: unless-stopped
     networks:
       - web
