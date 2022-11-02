@@ -120,6 +120,7 @@ services:
       - /dev/shm:/transcode
       - /mnt/tv:/tv
       - /mnt/movies:/movies
+      - /mnt/media/media:/media/media
     deploy:
       resources:
         reservations:
