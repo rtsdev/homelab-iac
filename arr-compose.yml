@@ -20,6 +20,7 @@ services:
       - web
     volumes:
       - /data/bazarr:/config
+      - /mnt/media/media:/mnt/media/media
       - /mnt/movies:/movies
       - /mnt/tv:/tv
     labels:
@@ -74,7 +75,7 @@ services:
       - web
     volumes:
       - /data/lidarr:/config
-      - /mnt/media:/media
+      - /mnt/media:/mnt/media
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
@@ -93,7 +94,7 @@ services:
     volumes:
       - /data/nzbget:/config
       - /mnt/quarantine:/downloads
-      - /mnt/media/usenet:/media/usenet
+      - /mnt/media/usenet:/mnt/media/usenet
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
@@ -120,7 +121,7 @@ services:
       - /dev/shm:/transcode
       - /mnt/tv:/tv
       - /mnt/movies:/movies
-      - /mnt/media/media:/media/media
+      - /mnt/media/media:/mnt/media/media
     deploy:
       resources:
         reservations:
@@ -178,7 +179,7 @@ services:
       - web
     volumes:
       - /data/radarr:/config
-      - /mnt/media:/media
+      - /mnt/media:/mnt/media
       - /mnt/movies:/movies
       - /mnt/quarantine:/downloads
     labels:
@@ -248,7 +249,7 @@ services:
       - web
     volumes:
       - /data/sonarr:/config
-      - /mnt/media:/media
+      - /mnt/media:/mnt/media
       - /mnt/quarantine:/downloads
       - /mnt/tv:/tv
     labels:
@@ -317,6 +318,7 @@ services:
       - /data/transmission/data:/data
       - /data/transmission/mullvad:/etc/openvpn/custom
       - /mnt/quarantine:/downloads
+      - /mnt/media/torrents:/mnt/media/torrents
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
