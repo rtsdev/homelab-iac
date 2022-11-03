@@ -25,7 +25,6 @@ services:
       - /data/bazarr:/config
       - /mnt/media/media:/mnt/media/media
       - /mnt/movies:/movies
-      - /mnt/tv:/tv
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
@@ -121,7 +120,6 @@ services:
     volumes:
       - /data/plex:/config
       - /dev/shm:/transcode
-      - /mnt/tv:/tv
       - /mnt/movies:/movies
       - /mnt/media/media:/mnt/media/media
     deploy:
@@ -255,7 +253,6 @@ services:
       - /data/sonarr:/config
       - /mnt/media:/mnt/media
       - /mnt/quarantine:/downloads
-      - /mnt/tv:/tv
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
@@ -274,7 +271,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /data/tautulli/config:/config
       - /data/tautulli/logs:/logs:ro
-      - /mnt/tv/TV:/mnt/tv/TV
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
