@@ -4,7 +4,6 @@ x-hotio-vars: &hotio_vars
   PUID: 911
   PGID: 911
   TZ: America/New_York
-  UMASK: 002
 
 networks:
   web:
@@ -98,10 +97,7 @@ services:
   plex:
     container_name: plex
     environment:
-      PUID: 911
-      PGID: 911
-      TZ: America/New_York
-      UMASK: 002
+      <<: *hotio_vars
       PLEX_CLAIM: ${PLEX_CLAIM}
       ADVERTISE_IP: ${PLEX_ADVERTISE_IPS}
       ALLOWED_NETWORKS: ${PLEX_ALLOWED_NETWORKS}
@@ -126,12 +122,23 @@ services:
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
+  plex-autoscan:
+    container_name: plex-autoscan
+    environment:
+      <<: *hotio_vars
+    hostname: plex-autoscan
+    image: cloudb0x/autoscan:latest
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/plex-autoscan:/config
+      - /mnt/media/media:/mnt/media/media:ro
+
   plex-meta-manager:
     container_name: plex-meta-manager
     environment:
-      PUID: 911
-      PGID: 911
-      TZ: America/New_York
+      <<: *hotio_vars
       PMM_IGNORE_GHOST: true
       PMM_NO_MISSING: true
     hostname: plex-meta-manager
@@ -192,9 +199,7 @@ services:
 #   resilio:
 #     container_name: resilio
 #     environment:
-#       PUID: 911
-#       PGID: 911
-#       TZ: America/New_York
+#       <<: *hotio_vars
 #     hostname: resilio
 #     image: resilio/sync
 #     restart: unless-stopped
@@ -209,9 +214,7 @@ services:
   searcharr:
     container_name: searcharr
     environment:
-      PUID: 911
-      PGID: 911
-      TZ: America/New_York
+      <<: *hotio_vars
     hostname: searcharr
     image: toddrob/searcharr:latest
     restart: unless-stopped
@@ -242,9 +245,7 @@ services:
   tautulli:
     container_name: tautulli
     environment:
-      PUID: 911
-      PGID: 911
-      TZ: America/New_York
+      <<: *hotio_vars
     hostname: tautulli
     image: ghcr.io/tautulli/tautulli:latest
     restart: unless-stopped
@@ -265,6 +266,7 @@ services:
       - 1.1.1.1
       - 1.0.0.1
     environment:
+      <<: *hotio_vars
       CREATE_TUN_DEVICE: true
       ENABLE_UFW: false
       GLOBAL_APPLY_PERMISSIONS: false
@@ -275,8 +277,6 @@ services:
       OPENVPN_PASSWORD: ${TRANSMISSION_VPN_PASS}
       OPENVPN_PROVIDER: custom
       OPENVPN_USERNAME: ${TRANSMISSION_VPN_USER}
-      PGID: 911
-      PUID: 911
       TRANSMISSION_DOWNLOAD_DIR: /mnt/media/torrents
       TRANSMISSION_DOWNLOAD_QUEUE_SIZE: 10
       TRANSMISSION_INCOMPLETE_DIR: /mnt/media/torrents/intermediate
@@ -284,7 +284,6 @@ services:
       TRANSMISSION_WATCH_DIR: /mnt/media/torrents/watch
       TRANSMISSION_WATCH_DIR_ENABLED: true
       TRANSMISSION_WEB_UI: flood-for-transmission
-      TZ: America/New_York
       WEBPROXY_ENABLED: false
     hostname: transmission
     image: haugene/transmission-openvpn:latest
