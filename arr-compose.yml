@@ -1,5 +1,11 @@
 version: "3.8"
 
+x-hotio-vars: &hotio_vars
+  PUID: 911
+  PGID: 911
+  TZ: America/New_York
+  UMASK: 002
+
 networks:
   web:
     name: web
@@ -12,10 +18,7 @@ services:
   bazarr:
     container_name: bazarr
     environment:
-      PUID: 911
-      PGID: 911
-      TZ: America/New_York
-      UMASK: 002
+      <<: *hotio_vars
     hostname: bazarr
     image: cr.hotio.dev/hotio/bazarr:latest
     restart: unless-stopped
@@ -65,10 +68,7 @@ services:
   lidarr:
     container_name: lidarr
     environment:
-      PUID: 911
-      PGID: 911
-      TZ: America/New_York
-      UMASK: 002
+      <<: *hotio_vars
     hostname: lidarr
     image: cr.hotio.dev/hotio/lidarr:latest
     restart: unless-stopped
@@ -83,10 +83,7 @@ services:
   nzbget:
     container_name: nzbget
     environment:
-      PUID: 911
-      PGID: 911
-      TZ: America/New_York
-      UMASK: 002
+      <<: *hotio_vars
     hostname: nzbget
     image: cr.hotio.dev/hotio/nzbget:latest
     restart: unless-stopped
@@ -150,10 +147,7 @@ services:
   prowlarr:
     container_name: prowlarr
     environment:
-      PUID: 911
-      PGID: 911
-      TZ: America/New_York
-      UMASK: 002
+      <<: *hotio_vars
     hostname: prowlarr
     image: cr.hotio.dev/hotio/prowlarr:testing
     restart: unless-stopped
@@ -167,10 +161,7 @@ services:
   radarr:
     container_name: radarr
     environment:
-      PUID: 911
-      PGID: 911
-      TZ: America/New_York
-      UMASK: 002
+      <<: *hotio_vars
     hostname: radarr
     image: cr.hotio.dev/hotio/radarr:nightly
     restart: unless-stopped
@@ -236,10 +227,7 @@ services:
   sonarr:
     container_name: sonarr
     environment:
-      PUID: 911
-      PGID: 911
-      TZ: America/New_York
-      UMASK: 002
+      <<: *hotio_vars
     hostname: sonarr
     image: cr.hotio.dev/hotio/sonarr:v4
     restart: unless-stopped
