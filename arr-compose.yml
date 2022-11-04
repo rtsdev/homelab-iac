@@ -289,7 +289,7 @@ services:
       OPENVPN_USERNAME: ${TRANSMISSION_VPN_USER}
       PGID: 911
       PUID: 911
-      TRANSMISSION_DOWNLOAD_DIR: /mnt/media/torrents/completed
+      TRANSMISSION_DOWNLOAD_DIR: /mnt/media/torrents
       TRANSMISSION_DOWNLOAD_QUEUE_SIZE: 10
       TRANSMISSION_INCOMPLETE_DIR: /mnt/media/torrents/intermediate
       TRANSMISSION_INCOMPLETE_DIR_ENABLED: true
@@ -312,7 +312,6 @@ services:
     volumes:
       - /data/transmission/data:/data
       - /data/transmission/mullvad:/etc/openvpn/custom
-      - /mnt/quarantine:/downloads
       - /mnt/media/torrents:/mnt/media/torrents
     labels:
       com.centurylinklabs.watchtower.enable: "true"
