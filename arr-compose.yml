@@ -213,7 +213,7 @@ services:
 #       - 8888:8888
 #       - 55555
 #     volumes:
-#       - /mnt/quarantine/sync:/mnt/sync
+#       - /mnt/media/resilio/sync:/mnt/sync
      
   searcharr:
     container_name: searcharr
