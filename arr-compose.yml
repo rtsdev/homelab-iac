@@ -4,6 +4,7 @@ x-hotio-vars: &hotio_vars
   PUID: 911
   PGID: 911
   TZ: America/New_York
+  UMASK: 002
 
 networks:
   web:
