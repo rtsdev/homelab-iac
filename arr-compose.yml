@@ -198,7 +198,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /data/tautulli/config:/config
-      - /data/tautulli/logs:/logs:ro
+      - /data/plex/Library/Application Support/Plex Media Server/Logs:/plex-logs:ro
+      - /mnt/media/media/tv:/mnt/media/media/tv
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
