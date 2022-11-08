@@ -98,15 +98,12 @@ services:
   plex:
     container_name: plex
     environment:
-      <<: *hotio_vars
-      PLEX_CLAIM: ${PLEX_CLAIM}
-      ADVERTISE_IP: ${PLEX_ADVERTISE_IPS}
-      ALLOWED_NETWORKS: ${PLEX_ALLOWED_NETWORKS}
-      PLEX_PASS: yes
+      PLEX_UID: 911
+      PLEX_GID: 911
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITIES: all
     hostname: plex
-    image: cr.hotio.dev/hotio/plex:latest
+    image: plexinc/pms-docker:plexpass
     restart: unless-stopped
     networks:
       - web
