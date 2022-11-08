@@ -1,0 +1,69 @@
+version: '3.8'
+
+x-common-cars: &common_vars
+  PUID: 911
+  PGID: 911
+  TZ: America/New_York
+  UMASK: 022
+
+networks:
+  web:
+    name: web
+    external: true
+
+services:
+  plex:
+    container_name: plex
+    environment:
+      PLEX_UID: 911
+      PLEX_GID: 911
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: all
+    hostname: plex
+    image: plexinc/pms-docker:plexpass
+    restart: unless-stopped
+    networks:
+      - web
+    ports:
+      - '32400:32400'
+    volumes:
+      - /data/plex:/config
+      - /dev/shm:/transcode
+      - /mnt/media/media:/mnt/media/media
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities:
+                - gpu
+    labels:
+      com.centurylinklabs.watchtower.monitor-only: 'true'
+
+  plex-autoscan:
+    container_name: plex-autoscan
+    environment:
+      <<: *common_vars
+    hostname: plex-autoscan
+    image: cloudb0x/autoscan:latest
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/plex-autoscan:/config
+      - /mnt/media/media:/mnt/media/media:ro
+
+  plex-meta-manager:
+    container_name: plex-meta-manager
+    environment:
+      <<: *common_vars
+      PMM_IGNORE_GHOST: true
+      PMM_NO_MISSING: true
+    hostname: plex-meta-manager
+    image: meisnate12/plex-meta-manager:nightly
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/plex-meta-manager:/config:rw
+    labels:
+      com.centurylinklabs.watchtower.enable: 'true'
