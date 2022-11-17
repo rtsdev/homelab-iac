@@ -51,6 +51,8 @@ services:
     volumes:
       - /data/plex-autoscan:/config
       - /mnt/media/media:/mnt/media/media:ro
+    labels:
+      com.centurylinklabs.watchtower.enable: 'true'
 
   plex-meta-manager:
     container_name: plex-meta-manager
