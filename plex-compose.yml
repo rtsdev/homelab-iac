@@ -54,6 +54,20 @@ services:
     labels:
       com.centurylinklabs.watchtower.enable: 'true'
 
+  plex-auto-languages:
+    container_name: plex-auto-languages
+    environment:
+      <<: *common_vars
+    hostname: plex-auto-languages
+    image: remirigal/plex-auto-languages:latest
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/plex-auto-languages:/config
+    labels:
+      com.centurylinklabs.watchtower.enable: 'true'
+
   plex-meta-manager:
     container_name: plex-meta-manager
     environment:
