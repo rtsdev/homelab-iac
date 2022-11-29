@@ -176,7 +176,7 @@ services:
     environment:
       <<: *hotio_vars
     hostname: sonarr
-    image: lscr.io/linuxserver/sonarr:v4
+    image: lscr.io/linuxserver/sonarr:develop
     restart: unless-stopped
     networks:
       - web
