@@ -154,7 +154,21 @@ services:
 #       - 55555
 #     volumes:
 #       - /mnt/media/resilio/sync:/mnt/sync
-     
+  sabnzbd:
+    container_name: sabnzbd
+    environment:
+      <<: *hotio_vars
+    hostname: sabnzbd
+    image: lscr.io/linuxserver/sabnzbd:latest
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/sabnzbd:/config
+      - /mnt/media/usenet:/mnt/media/usenet
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+
   searcharr:
     container_name: searcharr
     environment:
