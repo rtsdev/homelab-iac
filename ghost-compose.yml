@@ -23,12 +23,10 @@ services:
       mail__options__port: 587
       mail__options__auth__user: ${MAILGUN_USER}
       mail__options__auth__pass: ${MAILGUN_PASS}
-      url: http://192.168.90.34:2368
+      url: ${GHOST_URL}
       NODE_ENV: development
     hostname: ghost
     image: ghost:4-alpine
-    ports:
-      - "2368:2368"
     restart: unless-stopped
     networks:
       - ghost-network
