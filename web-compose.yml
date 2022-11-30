@@ -17,7 +17,7 @@ services:
       url: http://localhost:2368
       NODE_ENV: development
     hostname: ghost
-    image: ghost:alpine
+    image: ghost:3-alpine
     ports:
       - "2368:2368"
     restart: unless-stopped
@@ -46,10 +46,10 @@ services:
       EXTRA_DOMAINS: ${SWAG_EXTRA_DOMAINS}
       STAGING: false
     hostname: swag
-    image: linuxserver/swag:latest
+    image: lscr.io/linuxserver/swag:latest
     ports:
-      - '80:80'
-      - '443:443'
+      - "80:80"
+      - "443:443"
     restart: unless-stopped
     networks:
       - web
