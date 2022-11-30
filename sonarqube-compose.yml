@@ -3,8 +3,10 @@ version: "3.8"
 networks:
   web:
     name: web
+    external: true
   db:
     name: db
+    external: true
 
 volumes:
   sonarqube-data:
