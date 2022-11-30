@@ -11,7 +11,7 @@ services:
       WATCHTOWER_SCHEDULE: 0 0 5 * * *
       WATCHTOWER_ROLLING_RESTART: true
     hostname: watchtower
-    image: containrrr/watchtower
+    image: containrrr/watchtower:latest
     network_mode: bridge
     restart: unless-stopped
     volumes:
