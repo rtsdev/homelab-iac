@@ -14,7 +14,13 @@ services:
       database__connection__filename: content/data/ghost.db
       database__useNullAsDefault: true
       database__debug: false
-      url: http://localhost:2368
+      mail__transport: SMTP
+      mail__options__service: Mailgun
+      mail__options__host: smtp.mailgun.org
+      mail__options__port: 587
+      mail__options__auth__user: ${MAILGUN_USER}
+      mail__options__auth__pass: ${MAILGUN_PASS}
+      url: http://192.168.90.34:2368
       NODE_ENV: development
     hostname: ghost
     image: ghost:3-alpine
