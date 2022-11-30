@@ -45,7 +45,7 @@ services:
       - /data/dashy/conf.yml:/app/public/conf.yml
       - /data/dashy/icons:/app/public/item-icons
     healthcheck:
-      test: [ 'CMD', 'node', '/app/services/healthcheck' ]
+      test: [ "CMD", "node", "/app/services/healthcheck" ]
       interval: 1m30s
       timeout: 10s
       retries: 3
@@ -154,6 +154,7 @@ services:
 #       - 55555
 #     volumes:
 #       - /mnt/media/resilio/sync:/mnt/sync
+
   sabnzbd:
     container_name: sabnzbd
     environment:
