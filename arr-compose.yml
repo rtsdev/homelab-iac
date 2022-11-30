@@ -70,7 +70,7 @@ services:
     environment:
       <<: *hotio_vars
     hostname: lidarr
-    image: cr.hotio.dev/hotio/lidarr:latest
+    image: lscr.io/linuxserver/lidarr:latest
     restart: unless-stopped
     networks:
       - web
