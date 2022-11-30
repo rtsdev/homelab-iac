@@ -20,7 +20,7 @@ services:
     environment:
       <<: *hotio_vars
     hostname: bazarr
-    image: cr.hotio.dev/hotio/bazarr:latest
+    image: lscr.io/linuxserver/bazarr:latest
     restart: unless-stopped
     networks:
       - web
@@ -85,7 +85,7 @@ services:
     environment:
       <<: *hotio_vars
     hostname: nzbget
-    image: cr.hotio.dev/hotio/nzbget:latest
+    image: lscr.io/linuxserver/nzbget:latest
     restart: unless-stopped
     networks:
       - web
@@ -100,7 +100,7 @@ services:
     environment:
       <<: *hotio_vars
     hostname: prowlarr
-    image: cr.hotio.dev/hotio/prowlarr:testing
+    image: lscr.io/linuxserver/prowlarr:testing
     restart: unless-stopped
     networks:
       - web
