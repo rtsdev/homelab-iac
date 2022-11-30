@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 x-common-cars: &common_vars
   PUID: 911
@@ -25,7 +25,7 @@ services:
     networks:
       - web
     ports:
-      - '32400:32400'
+      - "32400:32400"
     volumes:
       - /data/plex:/config
       - /dev/shm:/transcode
@@ -37,7 +37,7 @@ services:
             - capabilities:
                 - gpu
     labels:
-      com.centurylinklabs.watchtower.monitor-only: 'true'
+      com.centurylinklabs.watchtower.monitor-only: "true"
 
   plex-autoscan:
     container_name: plex-autoscan
@@ -52,7 +52,7 @@ services:
       - /data/plex-autoscan:/config
       - /mnt/media/media:/mnt/media/media:ro
     labels:
-      com.centurylinklabs.watchtower.enable: 'true'
+      com.centurylinklabs.watchtower.enable: "true"
 
   plex-auto-languages:
     container_name: plex-auto-languages
@@ -66,7 +66,7 @@ services:
     volumes:
       - /data/plex-auto-languages:/config
     labels:
-      com.centurylinklabs.watchtower.enable: 'true'
+      com.centurylinklabs.watchtower.enable: "true"
 
   plex-meta-manager:
     container_name: plex-meta-manager
@@ -82,4 +82,4 @@ services:
     volumes:
       - /data/plex-meta-manager:/config:rw
     labels:
-      com.centurylinklabs.watchtower.enable: 'true'
+      com.centurylinklabs.watchtower.enable: "true"
