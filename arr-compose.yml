@@ -100,7 +100,7 @@ services:
     environment:
       <<: *hotio_vars
     hostname: prowlarr
-    image: lscr.io/linuxserver/prowlarr:testing
+    image: lscr.io/linuxserver/prowlarr:nightly
     restart: unless-stopped
     networks:
       - web
