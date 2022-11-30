@@ -7,6 +7,27 @@ networks:
     name: db
 
 services:
+  ghost:
+    container_name: ghost
+    environment:
+      database__client: sqlite3
+      database__connection__filename: content/data/ghost.db
+      database__useNullAsDefault: true
+      database__debug: false
+      url: http://localhost:2368
+      NODE_ENV: development
+    hostname: ghost
+    image: ghost:alpine
+    ports:
+      - "2368:2368"
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/ghost:/var/lib/ghost/content
+    labels:
+      com.centurylinklabs.watchtower.monitor-only: "true"
+
   swag:
     cap_add:
       - NET_ADMIN
