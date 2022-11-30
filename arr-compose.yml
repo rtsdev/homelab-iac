@@ -1,6 +1,6 @@
 version: "3.8"
 
-x-hotio-vars: &hotio_vars
+x-lsio-vars: &lsio_vars
   PUID: 911
   PGID: 911
   TZ: America/New_York
@@ -18,7 +18,7 @@ services:
   bazarr:
     container_name: bazarr
     environment:
-      <<: *hotio_vars
+      <<: *lsio_vars
     hostname: bazarr
     image: lscr.io/linuxserver/bazarr:latest
     restart: unless-stopped
@@ -68,7 +68,7 @@ services:
   lidarr:
     container_name: lidarr
     environment:
-      <<: *hotio_vars
+      <<: *lsio_vars
     hostname: lidarr
     image: lscr.io/linuxserver/lidarr:latest
     restart: unless-stopped
@@ -83,7 +83,7 @@ services:
   nzbget:
     container_name: nzbget
     environment:
-      <<: *hotio_vars
+      <<: *lsio_vars
     hostname: nzbget
     image: lscr.io/linuxserver/nzbget:latest
     restart: unless-stopped
@@ -98,7 +98,7 @@ services:
   prowlarr:
     container_name: prowlarr
     environment:
-      <<: *hotio_vars
+      <<: *lsio_vars
     hostname: prowlarr
     image: lscr.io/linuxserver/prowlarr:nightly
     restart: unless-stopped
@@ -112,7 +112,7 @@ services:
   radarr:
     container_name: radarr
     environment:
-      <<: *hotio_vars
+      <<: *lsio_vars
     hostname: radarr
     image: lscr.io/linuxserver/radarr:nightly
     restart: unless-stopped
@@ -143,7 +143,7 @@ services:
 #   resilio:
 #     container_name: resilio
 #     environment:
-#       <<: *hotio_vars
+#       <<: *lsio_vars
 #     hostname: resilio
 #     image: resilio/sync
 #     restart: unless-stopped
@@ -158,7 +158,7 @@ services:
   sabnzbd:
     container_name: sabnzbd
     environment:
-      <<: *hotio_vars
+      <<: *lsio_vars
     hostname: sabnzbd
     image: lscr.io/linuxserver/sabnzbd:latest
     restart: unless-stopped
@@ -173,7 +173,7 @@ services:
   searcharr:
     container_name: searcharr
     environment:
-      <<: *hotio_vars
+      <<: *lsio_vars
     hostname: searcharr
     image: toddrob/searcharr:latest
     restart: unless-stopped
@@ -189,7 +189,7 @@ services:
   sonarr:
     container_name: sonarr
     environment:
-      <<: *hotio_vars
+      <<: *lsio_vars
     hostname: sonarr
     image: lscr.io/linuxserver/sonarr:develop
     restart: unless-stopped
@@ -204,7 +204,7 @@ services:
   tautulli:
     container_name: tautulli
     environment:
-      <<: *hotio_vars
+      <<: *lsio_vars
     hostname: tautulli
     image: ghcr.io/tautulli/tautulli:latest
     restart: unless-stopped
@@ -226,7 +226,7 @@ services:
       - 1.1.1.1
       - 1.0.0.1
     environment:
-      <<: *hotio_vars
+      <<: *lsio_vars
       CREATE_TUN_DEVICE: true
       ENABLE_UFW: false
       GLOBAL_APPLY_PERMISSIONS: false
