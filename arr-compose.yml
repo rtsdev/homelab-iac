@@ -124,6 +124,21 @@ services:
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
+  readarr:
+    container_name: readarr
+    environment:
+      <<: *lsio_vars
+    hostname: readarr
+    image: lscr.io/linuxserver/readarr:develop
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/readarr:/config
+      - /mnt/media:/mnt/media
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+
   recyclarr:
     container_name: recyclarr
     environment:
