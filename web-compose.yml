@@ -20,7 +20,7 @@ services:
       URL: ${SWAG_URL}
       SUBDOMAINS: wildcard
       VALIDATION: dns
-      DNSPLUGIN: digitalocean
+      DNSPLUGIN: cloudflare
       EMAIL: ${SWAG_EMAIL}
       DHLEVEL: 2048
       ONLY_SUBDOMAINS: false
