@@ -119,15 +119,3 @@ collections:
         visible_shared_<<key>>: true
         image: seasonal/<<key>>
     imdb_list: https://www.imdb.com/list/ls000096828/
-
-  New Year's Day:
-    variables:
-      key: years
-    template:
-      - name: Holiday
-        schedule_years: range(12/26-01/04)
-      - name: shared
-        visible_home_<<key>>: true
-        visible_shared_<<key>>: true
-        image: seasonal/<<key>>
-    imdb_list: https://www.imdb.com/list/ls066838460/
