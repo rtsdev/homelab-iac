@@ -73,7 +73,7 @@ collections:
       key: christmas
     template:
       - name: Holiday
-        schedule_christmas: range(12/01-12/31)
+        schedule_christmas: range(12/01-12/28)
       - name: shared
         visible_home_<<key>>: true
         visible_shared_<<key>>: true
