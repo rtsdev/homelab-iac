@@ -13,7 +13,7 @@ templates:
       - <<use_<<key>>>>
     trakt_list: <<url_<<key>>>>
     cache_builders: 1
-    sync_to_users: all
+    sync_to_users:
     sync_mode: sync
     libraries: <<libraries>>
     url_poster: https://raw.githubusercontent.com/meisnate12/Plex-Meta-Manager-Images/master/playlist/<<playlist_name_encoded>>.jpg
