@@ -37,7 +37,7 @@ collections:
       key: valentine
     template:
       - name: Holiday
-        schedule_valentine: range(02/01-02/29)
+        schedule_valentine: range(02/01-02/15)
       - name: shared
         visible_home_<<key>>: true
         visible_shared_<<key>>: true
