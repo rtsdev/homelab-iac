@@ -166,7 +166,7 @@ services:
       - web
     ports:
       - 8888:8888
-      - 55555
+      - 55555:55555
     volumes:
       - /data/resilio/config:/config
       - /mnt/media/resilio/downloads:/downloads
