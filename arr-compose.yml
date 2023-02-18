@@ -155,22 +155,22 @@ services:
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
-    resilio:
-      container_name: resilio
-      environment:
-        <<: *lsio_vars
-      hostname: resilio
-      image: lscr.io/linuxserver/resilio-sync:latest
-      restart: unless-stopped
-      networks:
-        - web
-      ports:
-        - 8888:8888
-        - 55555
-      volumes:
-        - /data/resilio/config:/config
-        - /mnt/media/resilio/downloads:/downloads
-        - /mnt/media/resilio/sync:/sync
+  resilio:
+    container_name: resilio
+    environment:
+      <<: *lsio_vars
+    hostname: resilio
+    image: lscr.io/linuxserver/resilio-sync:latest
+    restart: unless-stopped
+    networks:
+      - web
+    ports:
+      - 8888:8888
+      - 55555
+    volumes:
+      - /data/resilio/config:/config
+      - /mnt/media/resilio/downloads:/downloads
+      - /mnt/media/resilio/sync:/sync
 
   sabnzbd:
     container_name: sabnzbd
