@@ -39,21 +39,6 @@ services:
     labels:
       com.centurylinklabs.watchtower.monitor-only: "true"
 
-  plex-autoscan:
-    container_name: plex-autoscan
-    environment:
-      <<: *common_vars
-    hostname: plex-autoscan
-    image: cloudb0x/autoscan:latest
-    restart: unless-stopped
-    networks:
-      - web
-    volumes:
-      - /data/plex-autoscan:/config
-      - /mnt/media/media:/mnt/media/media:ro
-    labels:
-      com.centurylinklabs.watchtower.enable: "true"
-
   plex-auto-languages:
     container_name: plex-auto-languages
     environment:
