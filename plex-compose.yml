@@ -77,6 +77,8 @@ services:
     restart: unless-stopped
     networks:
       - web
+    ports:
+      - "8096:8096"
     volumes:
       - /data/plex-offline:/config
       - /dev/shm:/cache
