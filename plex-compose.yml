@@ -71,6 +71,8 @@ services:
 
   plex-offline:
     container_name: plex-offline
+    environment:
+      JELLYFIN_PublishedServerUrl: http://192.168.90.34:8096
     hostname: plex-offline
     user: 911:911
     image: jellyfin/jellyfin
