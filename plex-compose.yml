@@ -68,3 +68,18 @@ services:
       - /data/plex-meta-manager:/config:rw
     labels:
       com.centurylinklabs.watchtower.enable: "true"
+
+  plex-offline:
+    container_name: plex-offline
+    hostname: plex-offline
+    user: 911:911
+    image: jellyfin/jellyfin
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/plex-offline:/config
+      - /dev/shm:/cache
+      - /mnt/media/media:/mnt/media/media
+    labels:
+      com.centurylinklabs.watchtower.monitor-only: "true"
