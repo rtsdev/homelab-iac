@@ -1,0 +1,27 @@
+version: "3.8"
+
+x-common-cars: &common_vars
+  TZ: America/New_York
+
+networks:
+  web:
+    name: web
+    external: true
+
+services:
+  ersatztv:
+    container_name: ersatztv
+    environment:
+      <<: *common_vars
+    hostname: ersatztv
+    image: jasongdove/ersatztv:latest
+    restart: unless-stopped
+    networks:
+      - web
+    ports:
+      - "8409:8409"
+    volumes:
+      - /data/ersatztv:/root/.local/share/ersatztv
+      - /mnt/media/media:/mnt/media/media:ro
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
