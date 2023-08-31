@@ -124,6 +124,21 @@ services:
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
+  radarr-anime:
+    container_name: radarr-anime
+    environment:
+      <<: *lsio_vars
+    hostname: radarr-anime
+    image: lscr.io/linuxserver/radarr:nightly
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/radarr-anime:/config
+      - /mnt/media:/mnt/media
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+
   readarr:
     container_name: readarr
     environment:
