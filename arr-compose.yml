@@ -134,7 +134,7 @@ services:
     networks:
       - web
     ports:
-      - 7879:7878
+      - 7878:7878
     volumes:
       - /data/radarr-anime:/config
       - /mnt/media:/mnt/media
@@ -229,8 +229,6 @@ services:
     restart: unless-stopped
     networks:
       - web
-    ports:
-      - 8989:8989
     volumes:
       - /data/sonarr:/config
       - /mnt/media:/mnt/media
@@ -246,6 +244,8 @@ services:
     restart: unless-stopped
     networks:
       - web
+    ports:
+      - 8989:8989
     volumes:
       - /data/sonarr-anime:/config
       - /mnt/media:/mnt/media
