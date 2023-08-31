@@ -218,6 +218,21 @@ services:
     labels:
       com.centurylinklabs.watchtower.enable: "true"
 
+  sonarr-anime:
+    container_name: sonarr-anime
+    environment:
+      <<: *lsio_vars
+    hostname: sonarr-anime
+    image: lscr.io/linuxserver/sonarr:develop
+    restart: unless-stopped
+    networks:
+      - web
+    volumes:
+      - /data/sonarr-anime:/config
+      - /mnt/media:/mnt/media
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+
   tautulli:
     container_name: tautulli
     environment:
