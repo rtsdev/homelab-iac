@@ -1,0 +1,16 @@
+version: "3.8"
+
+name: devtools
+
+networks:
+  web:
+    name: web
+    external: true
+
+services:
+  it-tools:
+    container_name: it-tools
+    hostname: it-tools
+    image: ghcr.io/corentinth/it-tools:latest
+    networks:
+      - web
