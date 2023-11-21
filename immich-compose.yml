@@ -63,11 +63,14 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: [gpu,video]
+              capabilities:
+                - gpu
+                - video
     environment:
       <<: [*db_vars, *redis_vars, *typesense_vars]
       IMMICH_MEDIA_LOCATION: /mnt/media/upload
       NVIDIA_DRIVER_CAPABILITIES: all
+      NVIDIA_VISIBLE_DEVICES: 1
       TZ: America/New_York
     hostname: immich-microservices
     image: ghcr.io/immich-app/immich-server:v1.88.1
