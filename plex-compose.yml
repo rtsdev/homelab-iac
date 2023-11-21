@@ -34,7 +34,9 @@ services:
       resources:
         reservations:
           devices:
-            - capabilities:
+            - driver: nvidia
+              count: all
+              capabilities:
                 - gpu
     labels:
       com.centurylinklabs.watchtower.monitor-only: "true"
