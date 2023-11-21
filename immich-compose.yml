@@ -1,0 +1,124 @@
+version: "3.8"
+
+name: immich
+
+x-db-vars: &db_vars
+  DB_HOSTNAME: immich-db
+  DB_PORT: 5432
+  DB_DATABASE_NAME: immich
+  DB_USERNAME: ${DB_USERNAME}
+  DB_PASSWORD: ${DB_PASSWORD}
+
+x-redis-vars: &redis_vars
+  REDIS_HOSTNAME: immich-redis
+
+x-typesense-vars: &typesense_vars
+  TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
+  TYPESENSE_HOST: immich-typesense
+  TYPESENSE_DATA_DIR: /data
+
+networks:
+  web:
+    name: web
+    external: true
+
+volumes:
+  pgdata:
+  model-cache:
+  tsdata:
+
+services:
+  immich-server:
+    command: [ "start.sh", "immich" ]
+    container_name: immich-server
+    depends_on:
+      - immich-redis
+      - immich-db
+      - immich-typesense
+    environment:
+      <<: [*db_vars, *redis_vars, *typesense_vars]
+      IMMICH_MEDIA_LOCATION: /mnt/media/upload
+      TZ: America/New_York
+    image: ghcr.io/immich-app/immich-server:v1.88.1
+    hostname: immich-server
+    ports:
+      - "2283:3001"
+    restart: always
+    volumes:
+      - /mnt/media/upload:/mnt/media/upload
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      com.centurylinklabs.watchtower.monitor-only: "true"
+
+  immich-microservices:
+    command: [ "start.sh", "microservices" ]
+    container_name: immich-microservices
+    depends_on:
+      - immich-redis
+      - immich-db
+      - immich-typesense
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu,video]
+    environment:
+      <<: [*db_vars, *redis_vars, *typesense_vars]
+      IMMICH_MEDIA_LOCATION: /mnt/media/upload
+      NVIDIA_DRIVER_CAPABILITIES: all
+      TZ: America/New_York
+    hostname: immich-microservices
+    image: ghcr.io/immich-app/immich-server:v1.88.1
+    restart: always
+    volumes:
+      - /mnt/media/upload:/mnt/media/upload
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      com.centurylinklabs.watchtower.monitor-only: "true"
+
+  immich-machine-learning:
+    container_name: immich-machine-learning
+    hostname: immich-machine-learning
+    image: ghcr.io/immich-app/immich-machine-learning:v1.88.1
+    restart: always
+    volumes:
+      - model-cache:/cache
+    labels:
+      com.centurylinklabs.watchtower.monitor-only: "true"
+
+  immich-typesense:
+    container_name: immich-typesense
+    environment:
+      <<: [*typesense_vars]
+      GLOG_minloglevel: 1
+    hostname: immich-typesense
+    image: typesense/typesense:0.24.1@sha256:9bcff2b829f12074426ca044b56160ca9d777a0c488303469143dd9f8259d4dd
+    restart: always
+    volumes:
+      - tsdata:/data
+    labels:
+      com.centurylinklabs.watchtower.monitor-only: "true"
+
+  immich-redis:
+    container_name: immich-redis
+    hostname: immich-redis
+    image: redis:6.2-alpine@sha256:80cc8518800438c684a53ed829c621c94afd1087aaeb59b0d4343ed3e7bcf6c5
+    restart: always
+    labels:
+      com.centurylinklabs.watchtower.monitor-only: "true"
+
+  immich-db:
+    container_name: immich-db
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: immich
+    hostname: immich-db
+    image: postgres:14-alpine@sha256:50d9be76e9a90da4c781554955e0ffc79d9d5c4226838e64b36aacc97cbc35ad
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    labels:
+      com.centurylinklabs.watchtower.monitor-only: "true"
