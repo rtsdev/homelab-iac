@@ -6,3 +6,6 @@
 *.iml
 out
 gen
+
+# Sensitive files
+.env
