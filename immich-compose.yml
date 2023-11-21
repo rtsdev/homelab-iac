@@ -41,7 +41,7 @@ services:
       <<: [*db_vars, *redis_vars, *typesense_vars]
       IMMICH_MEDIA_LOCATION: /mnt/media/upload
       TZ: America/New_York
-    image: ghcr.io/immich-app/immich-server:v1.88.1
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     hostname: immich-server
     networks:
       - immich
@@ -76,7 +76,7 @@ services:
       NVIDIA_VISIBLE_DEVICES: 1
       TZ: America/New_York
     hostname: immich-microservices
-    image: ghcr.io/immich-app/immich-server:v1.88.1
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     networks:
       - immich
     restart: always
@@ -89,7 +89,7 @@ services:
   immich-ml:
     container_name: immich-ml
     hostname: immich-ml
-    image: ghcr.io/immich-app/immich-machine-learning:v1.88.1
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
     networks:
       - immich
     restart: always
