@@ -1,6 +1,6 @@
 version: "3.8"
 
-x-common-cars: &common_vars
+x-common-vars: &common_vars
   PUID: 911
   PGID: 911
   TZ: America/New_York
