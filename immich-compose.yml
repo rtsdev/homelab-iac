@@ -18,6 +18,8 @@ x-typesense-vars: &typesense_vars
   TYPESENSE_DATA_DIR: /data
 
 networks:
+  immich:
+    name: immich
   web:
     name: web
     external: true
@@ -42,6 +44,7 @@ services:
     image: ghcr.io/immich-app/immich-server:v1.88.1
     hostname: immich-server
     networks:
+      - immich
       - web
     restart: always
     volumes:
@@ -74,6 +77,8 @@ services:
       TZ: America/New_York
     hostname: immich-microservices
     image: ghcr.io/immich-app/immich-server:v1.88.1
+    networks:
+      - immich
     restart: always
     volumes:
       - /mnt/media/upload:/mnt/media/upload
@@ -85,6 +90,8 @@ services:
     container_name: immich-ml
     hostname: immich-ml
     image: ghcr.io/immich-app/immich-machine-learning:v1.88.1
+    networks:
+      - immich
     restart: always
     volumes:
       - immich-ml-data:/cache
@@ -98,6 +105,8 @@ services:
       GLOG_minloglevel: 1
     hostname: immich-ts
     image: typesense/typesense:0.24.1@sha256:9bcff2b829f12074426ca044b56160ca9d777a0c488303469143dd9f8259d4dd
+    networks:
+      - immich
     restart: always
     volumes:
       - immich-ts-data:/data
@@ -108,6 +117,8 @@ services:
     container_name: immich-redis
     hostname: immich-redis
     image: redis:6.2-alpine@sha256:80cc8518800438c684a53ed829c621c94afd1087aaeb59b0d4343ed3e7bcf6c5
+    networks:
+      - immich
     restart: always
     labels:
       com.centurylinklabs.watchtower.monitor-only: "true"
@@ -120,6 +131,8 @@ services:
       POSTGRES_DB: immich
     hostname: immich-db
     image: postgres:14-alpine@sha256:50d9be76e9a90da4c781554955e0ffc79d9d5c4226838e64b36aacc97cbc35ad
+    networks:
+      - immich
     restart: always
     volumes:
       - immich-db-data:/var/lib/postgresql/data
