@@ -41,8 +41,8 @@ services:
       TZ: America/New_York
     image: ghcr.io/immich-app/immich-server:v1.88.1
     hostname: immich-server
-    ports:
-      - "2283:3001"
+    networks:
+      - web
     restart: always
     volumes:
       - /mnt/media/upload:/mnt/media/upload
