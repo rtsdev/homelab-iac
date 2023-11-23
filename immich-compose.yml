@@ -2,6 +2,11 @@ version: "3.8"
 
 name: immich
 
+x-common-vars: &common_vars
+  PUID: 812
+  PGID: 812
+  TZ: America/New_York
+
 x-db-vars: &db_vars
   DB_HOSTNAME: immich-db
   DB_PORT: 5432
@@ -27,6 +32,7 @@ networks:
 volumes:
   immich-db-data:
   immich-ml-data:
+  immich-ms-data:
   immich-ts-data:
 
 services:
@@ -38,15 +44,15 @@ services:
       - immich-db
       - immich-ts
     environment:
-      <<: [*db_vars, *redis_vars, *typesense_vars]
+      <<: [ *common_vars, *db_vars, *redis_vars, *typesense_vars ]
       IMMICH_MEDIA_LOCATION: /mnt/media/upload
-      TZ: America/New_York
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     hostname: immich-server
     networks:
       - immich
       - web
     restart: always
+    user: 812:812
     volumes:
       - /mnt/media/upload:/mnt/media/upload
       - /etc/localtime:/etc/localtime:ro
@@ -70,17 +76,18 @@ services:
                 - gpu
                 - video
     environment:
-      <<: [*db_vars, *redis_vars, *typesense_vars]
+      <<: [ *common_vars, *db_vars, *redis_vars, *typesense_vars ]
       IMMICH_MEDIA_LOCATION: /mnt/media/upload
       NVIDIA_DRIVER_CAPABILITIES: all
       NVIDIA_VISIBLE_DEVICES: 1
-      TZ: America/New_York
     hostname: immich-microservices
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     networks:
       - immich
     restart: always
+    user: 812:812
     volumes:
+      - immich-ms-data:/usr/src/app/.reverse-geocoding-dump
       - /mnt/media/upload:/mnt/media/upload
       - /etc/localtime:/etc/localtime:ro
     labels:
@@ -88,11 +95,14 @@ services:
 
   immich-ml:
     container_name: immich-ml
+    environment:
+      <<: [ *common_vars ]
     hostname: immich-ml
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
     networks:
       - immich
     restart: always
+    user: 812:812
     volumes:
       - immich-ml-data:/cache
     labels:
@@ -101,7 +111,7 @@ services:
   immich-ts:
     container_name: immich-ts
     environment:
-      <<: [*typesense_vars]
+      <<: [ *typesense_vars ]
       GLOG_minloglevel: 1
     hostname: immich-ts
     image: typesense/typesense:0.24.1@sha256:9bcff2b829f12074426ca044b56160ca9d777a0c488303469143dd9f8259d4dd
