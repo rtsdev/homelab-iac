@@ -6,7 +6,6 @@ x-common-vars: &common_vars
   PUID: 812
   PGID: 812
   TZ: America/New_York
-  IMMICH_CONFIG_FILE: /mnt/media/upload/immich-config.json
 
 x-db-vars: &db_vars
   DB_HOSTNAME: immich-db
