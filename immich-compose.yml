@@ -102,7 +102,7 @@ services:
     networks:
       - immich
     restart: always
-    user: 812:812
+    # user: 812:812
     volumes:
       - immich-ml-data:/cache
     labels:
