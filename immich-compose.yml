@@ -85,9 +85,9 @@ services:
     networks:
       - immich
     restart: always
-    user: 812:812
+    # user: 812:812
     volumes:
-      - immich-ms-data:/usr/src/app/.reverse-geocoding-dump
+    #   - immich-ms-data:/usr/src/app/.reverse-geocoding-dump
       - /mnt/media/upload:/mnt/media/upload
       - /etc/localtime:/etc/localtime:ro
     labels:
