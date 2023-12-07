@@ -32,7 +32,6 @@ networks:
 volumes:
   immich-db-data:
   immich-ml-data:
-  immich-ms-data:
   immich-ts-data:
 
 services:
@@ -85,9 +84,7 @@ services:
     networks:
       - immich
     restart: always
-    # user: 812:812
     volumes:
-    #   - immich-ms-data:/usr/src/app/.reverse-geocoding-dump
       - /mnt/media/upload:/mnt/media/upload
       - /etc/localtime:/etc/localtime:ro
     labels:
@@ -102,7 +99,6 @@ services:
     networks:
       - immich
     restart: always
-    # user: 812:812
     volumes:
       - immich-ml-data:/cache
     labels:
