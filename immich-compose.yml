@@ -17,11 +17,6 @@ x-db-vars: &db_vars
 x-redis-vars: &redis_vars
   REDIS_HOSTNAME: immich-redis
 
-x-typesense-vars: &typesense_vars
-  TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
-  TYPESENSE_HOST: immich-ts
-  TYPESENSE_DATA_DIR: /data
-
 networks:
   immich:
     name: immich
@@ -32,7 +27,6 @@ networks:
 volumes:
   immich-db-data:
   immich-ml-data:
-  immich-ts-data:
 
 services:
   immich-server:
@@ -41,9 +35,8 @@ services:
     depends_on:
       - immich-redis
       - immich-db
-      - immich-ts
     environment:
-      <<: [ *common_vars, *db_vars, *redis_vars, *typesense_vars ]
+      <<: [ *common_vars, *db_vars, *redis_vars ]
       IMMICH_MEDIA_LOCATION: /mnt/media/upload
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     hostname: immich-server
@@ -64,7 +57,6 @@ services:
     depends_on:
       - immich-redis
       - immich-db
-      - immich-ts
     deploy:
       resources:
         reservations:
@@ -75,7 +67,7 @@ services:
                 - gpu
                 - video
     environment:
-      <<: [ *common_vars, *db_vars, *redis_vars, *typesense_vars ]
+      <<: [ *common_vars, *db_vars, *redis_vars ]
       IMMICH_MEDIA_LOCATION: /mnt/media/upload
       NVIDIA_DRIVER_CAPABILITIES: all
       NVIDIA_VISIBLE_DEVICES: 1
@@ -104,21 +96,6 @@ services:
     labels:
       com.centurylinklabs.watchtower.monitor-only: "true"
 
-  immich-ts:
-    container_name: immich-ts
-    environment:
-      <<: [ *typesense_vars ]
-      GLOG_minloglevel: 1
-    hostname: immich-ts
-    image: typesense/typesense:0.24.1@sha256:9bcff2b829f12074426ca044b56160ca9d777a0c488303469143dd9f8259d4dd
-    networks:
-      - immich
-    restart: always
-    volumes:
-      - immich-ts-data:/data
-    labels:
-      com.centurylinklabs.watchtower.monitor-only: "true"
-
   immich-redis:
     container_name: immich-redis
     hostname: immich-redis
@@ -136,7 +113,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: immich
     hostname: immich-db
-    image: postgres:14-alpine@sha256:50d9be76e9a90da4c781554955e0ffc79d9d5c4226838e64b36aacc97cbc35ad
+    image: tensorchord/pgvecto-rs:pg14-v0.1.11
     networks:
       - immich
     restart: always
