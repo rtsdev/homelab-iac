@@ -85,7 +85,7 @@ services:
     environment:
       <<: *lsio_vars
     hostname: nzbget
-    image: lscr.io/linuxserver/nzbget:latest
+    image: ghcr.io/nzbgetcom/nzbget:testing
     restart: unless-stopped
     networks:
       - web
