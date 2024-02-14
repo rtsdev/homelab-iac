@@ -17,6 +17,10 @@ x-db-vars: &db_vars
 x-redis-vars: &redis_vars
   REDIS_HOSTNAME: immich-redis
 
+x-nvidia-vars: &nvidia_vars
+  NVIDIA_DRIVER_CAPABILITIES: all
+  NVIDIA_VISIBLE_DEVICES: 1
+
 networks:
   immich:
     name: immich
@@ -65,12 +69,11 @@ services:
               count: 1
               capabilities:
                 - gpu
+                - compute
                 - video
     environment:
-      <<: [ *common_vars, *db_vars, *redis_vars ]
+      <<: [ *common_vars, *db_vars, *redis_vars, *nvidia_vars ]
       IMMICH_MEDIA_LOCATION: /mnt/media/upload
-      NVIDIA_DRIVER_CAPABILITIES: all
-      NVIDIA_VISIBLE_DEVICES: 1
     hostname: immich-microservices
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     networks:
@@ -84,10 +87,20 @@ services:
 
   immich-ml:
     container_name: immich-ml
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities:
+                - gpu
+                - compute
+                - video
     environment:
-      <<: [ *common_vars ]
+      <<: [ *common_vars, *nvidia_vars ]
     hostname: immich-ml
-    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}-cuda
     networks:
       - immich
     restart: always
@@ -99,7 +112,7 @@ services:
   immich-redis:
     container_name: immich-redis
     hostname: immich-redis
-    image: redis:6.2-alpine@sha256:80cc8518800438c684a53ed829c621c94afd1087aaeb59b0d4343ed3e7bcf6c5
+    image: redis:6.2-alpine@sha256:afb290a0a0d0b2bd7537b62ebff1eb84d045c757c1c31ca2ca48c79536c0de82
     networks:
       - immich
     restart: always
@@ -113,7 +126,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: immich
     hostname: immich-db
-    image: tensorchord/pgvecto-rs:pg14-v0.1.11
+    image: tensorchord/pgvecto-rs:pg14-v0.1.11@sha256:0335a1a22f8c5dd1b697f14f079934f5152eaaa216c09b61e293be285491f8ee
     networks:
       - immich
     restart: always
